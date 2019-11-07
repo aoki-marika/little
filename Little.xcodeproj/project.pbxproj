@@ -10,7 +10,7 @@
 		EC76BB1B23745A8800F1034F /* LexerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1A23745A8800F1034F /* LexerError.swift */; };
 		EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1C23745A9800F1034F /* SourceError.swift */; };
 		ECA214562374516B002D25CA /* Little.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2144C2374516A002D25CA /* Little.framework */; };
-		ECA2145B2374516B002D25CA /* LittleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2145A2374516B002D25CA /* LittleTests.swift */; };
+		ECA2145B2374516B002D25CA /* LexerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2145A2374516B002D25CA /* LexerTests.swift */; };
 		ECA2145D2374516B002D25CA /* Little.h in Headers */ = {isa = PBXBuildFile; fileRef = ECA2144F2374516A002D25CA /* Little.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ECA21468237453FC002D25CA /* Lexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA21467237453FC002D25CA /* Lexer.swift */; };
 		ECA2146A23745405002D25CA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2146923745405002D25CA /* Token.swift */; };
@@ -33,7 +33,7 @@
 		ECA2144F2374516A002D25CA /* Little.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Little.h; sourceTree = "<group>"; };
 		ECA214502374516A002D25CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA214552374516B002D25CA /* LittleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ECA2145A2374516B002D25CA /* LittleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleTests.swift; sourceTree = "<group>"; };
+		ECA2145A2374516B002D25CA /* LexerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexerTests.swift; sourceTree = "<group>"; };
 		ECA2145C2374516B002D25CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA21467237453FC002D25CA /* Lexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lexer.swift; sourceTree = "<group>"; };
 		ECA2146923745405002D25CA /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		ECA214592374516B002D25CA /* LittleTests */ = {
 			isa = PBXGroup;
 			children = (
-				ECA2145A2374516B002D25CA /* LittleTests.swift */,
+				ECA2145A2374516B002D25CA /* LexerTests.swift */,
 				ECA2145C2374516B002D25CA /* Info.plist */,
 			);
 			path = LittleTests;
@@ -227,7 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECA2145B2374516B002D25CA /* LittleTests.swift in Sources */,
+				ECA2145B2374516B002D25CA /* LexerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
