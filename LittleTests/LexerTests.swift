@@ -60,6 +60,75 @@ class LexerTests: XCTestCase {
         assertTokens(from: " /21+ 3- 63*- 512  ", equals: expected)
     }
 
+    func testArithmetic() {
+        // test arithmetic expressions with all available tokens
+        assertTokens(
+            from: "7 + 3 * (10 / (12 / (3 + 1) - 1))",
+            equals: [
+                ExpectedToken(kind: .integer(value: 7),   literal: "7"),
+                ExpectedToken(kind: .plus,                literal: "+"),
+                ExpectedToken(kind: .integer(value: 3),   literal: "3"),
+                ExpectedToken(kind: .asterisk,            literal: "*"),
+                ExpectedToken(kind: .leftParentheses,     literal: "("),
+                    ExpectedToken(kind: .integer(value: 10),  literal: "10"),
+                    ExpectedToken(kind: .slash,               literal: "/"),
+                    ExpectedToken(kind: .leftParentheses,     literal: "("),
+                        ExpectedToken(kind: .integer(value: 12),  literal: "12"),
+                        ExpectedToken(kind: .slash,               literal: "/"),
+                        ExpectedToken(kind: .leftParentheses,     literal: "("),
+                            ExpectedToken(kind: .integer(value: 3),   literal: "3"),
+                            ExpectedToken(kind: .plus,                literal: "+"),
+                            ExpectedToken(kind: .integer(value: 1),   literal: "1"),
+                        ExpectedToken(kind: .rightParentheses,    literal: ")"),
+                        ExpectedToken(kind: .minus,               literal: "-"),
+                        ExpectedToken(kind: .integer(value: 1),   literal: "1"),
+                    ExpectedToken(kind: .rightParentheses,    literal: ")"),
+                ExpectedToken(kind: .rightParentheses,    literal: ")"),
+                ExpectedToken(kind: .endOfFile, literal: "")
+            ]
+        )
+
+        assertTokens(
+            from: "7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8)",
+            equals: [
+                ExpectedToken(kind: .integer(value: 7),   literal: "7"),
+                ExpectedToken(kind: .plus,                literal: "+"),
+                ExpectedToken(kind: .integer(value: 3),   literal: "3"),
+                ExpectedToken(kind: .asterisk,            literal: "*"),
+                ExpectedToken(kind: .leftParentheses,     literal: "("),
+                    ExpectedToken(kind: .integer(value: 10),  literal: "10"),
+                    ExpectedToken(kind: .slash,               literal: "/"),
+                    ExpectedToken(kind: .leftParentheses,     literal: "("),
+                        ExpectedToken(kind: .integer(value: 12),  literal: "12"),
+                        ExpectedToken(kind: .slash,               literal: "/"),
+                        ExpectedToken(kind: .leftParentheses,     literal: "("),
+                            ExpectedToken(kind: .integer(value: 3),   literal: "3"),
+                            ExpectedToken(kind: .plus,                literal: "+"),
+                            ExpectedToken(kind: .integer(value: 1),   literal: "1"),
+                        ExpectedToken(kind: .rightParentheses,    literal: ")"),
+                        ExpectedToken(kind: .minus,               literal: "-"),
+                        ExpectedToken(kind: .integer(value: 1),   literal: "1"),
+                    ExpectedToken(kind: .rightParentheses,    literal: ")"),
+                ExpectedToken(kind: .rightParentheses,    literal: ")"),
+                ExpectedToken(kind: .slash,               literal: "/"),
+                ExpectedToken(kind: .leftParentheses,     literal: "("),
+                    ExpectedToken(kind: .integer(value: 2),   literal: "2"),
+                    ExpectedToken(kind: .plus,                literal: "+"),
+                    ExpectedToken(kind: .integer(value: 3),   literal: "3"),
+                ExpectedToken(kind: .rightParentheses,    literal: ")"),
+                ExpectedToken(kind: .minus,               literal: "-"),
+                ExpectedToken(kind: .integer(value: 5),   literal: "5"),
+                ExpectedToken(kind: .minus,               literal: "-"),
+                ExpectedToken(kind: .integer(value: 3),   literal: "3"),
+                ExpectedToken(kind: .plus,                literal: "+"),
+                ExpectedToken(kind: .leftParentheses,     literal: "("),
+                    ExpectedToken(kind: .integer(value: 8),   literal: "8"),
+                ExpectedToken(kind: .rightParentheses,    literal: ")"),
+                ExpectedToken(kind: .endOfFile, literal: "")
+            ]
+        )
+    }
+
     // MARK: Private Methods
 
     /// Assert that the tokens analyzed from the given input match the given expected tokens.

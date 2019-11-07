@@ -19,6 +19,8 @@ class Lexer {
         "-": .minus,
         "*": .asterisk,
         "/": .slash,
+        "(": .leftParentheses,
+        ")": .rightParentheses
     ]
 
     /// The source code for this lexer to analyze.

@@ -40,6 +40,12 @@ extension Token {
         /// Either the binary or unary `/` operator.
         case slash
 
+        /// The left part of the `(...)` operator.
+        case leftParentheses
+
+        /// The right part of the `(...)` operator.
+        case rightParentheses
+
         /// An integer literal.
         /// - Parameter value: The integer value of the literal.
         case integer(value: Int)
