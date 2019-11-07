@@ -70,7 +70,7 @@ class Lexer {
 
     /// Reset this analyzer's state.
     ///
-    /// This is used only if the input should be reanalyzed.
+    /// This is used only if the source should be reanalyzed.
     func reset() {
         currentPosition = input.startIndex
     }
@@ -102,7 +102,7 @@ class Lexer {
                 return token
             }
             // number literals
-            else if currentCharacter.isNumber {
+            else if currentCharacter.isDigit {
                 let token = try readNumber()
                 return token
             }
@@ -198,7 +198,7 @@ class Lexer {
 
             literal.append(currentCharacter)
             readCharacter()
-        } while currentCharacter?.isNumber ?? false
+        } while currentCharacter?.isDigit ?? false
 
         // get the proper value type
         // note: currently only processes integers, floating point will be added later

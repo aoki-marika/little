@@ -34,10 +34,10 @@ extension Token {
         /// Either the binary or unary `-` operator.
         case minus
 
-        /// Either the binary or unary `*` operator.
+        /// The binary `*` operator.
         case asterisk
 
-        /// Either the binary or unary `/` operator.
+        /// The binary `/` operator.
         case slash
 
         /// The left part of the `(...)` punctuator.
@@ -57,6 +57,8 @@ extension Token {
         case endOfFile
 
         // MARK: Public Properties
+
+        #warning("TODO: Need to communicate when a token kind conforms to multiple categories, such as - which is both an unary and binary operator.")
 
         /// The category that this kind belongs to.
         var category: Category {
