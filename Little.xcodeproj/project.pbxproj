@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC1D4AC82374A7610027FFA2 /* ExpressionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D4AC72374A7610027FFA2 /* ExpressionNode.swift */; };
 		EC76BB1B23745A8800F1034F /* LexerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1A23745A8800F1034F /* LexerError.swift */; };
 		EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1C23745A9800F1034F /* SourceError.swift */; };
 		EC76BB2723748A7500F1034F /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB2623748A7500F1034F /* Character.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC1D4AC72374A7610027FFA2 /* ExpressionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionNode.swift; sourceTree = "<group>"; };
 		EC76BB1A23745A8800F1034F /* LexerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexerError.swift; sourceTree = "<group>"; };
 		EC76BB1C23745A9800F1034F /* SourceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceError.swift; sourceTree = "<group>"; };
 		EC76BB2623748A7500F1034F /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC76BB1E237473BD00F1034F /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				EC1D4AC72374A7610027FFA2 /* ExpressionNode.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
 		EC76BB2523748A6A00F1034F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +101,7 @@
 			children = (
 				EC76BB1C23745A9800F1034F /* SourceError.swift */,
 				ECA21466237453F1002D25CA /* Lexer */,
+				EC76BB1E237473BD00F1034F /* Parser */,
 				EC76BB2523748A6A00F1034F /* Extensions */,
 				ECA2144F2374516A002D25CA /* Little.h */,
 				ECA214502374516A002D25CA /* Info.plist */,
@@ -230,6 +241,7 @@
 				EC76BB1B23745A8800F1034F /* LexerError.swift in Sources */,
 				ECA21468237453FC002D25CA /* Lexer.swift in Sources */,
 				EC76BB2723748A7500F1034F /* Character.swift in Sources */,
+				EC1D4AC82374A7610027FFA2 /* ExpressionNode.swift in Sources */,
 				ECA2146A23745405002D25CA /* Token.swift in Sources */,
 				EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */,
 			);
