@@ -61,53 +61,76 @@ class Lexer {
     /// - Parameter input: The source code for this lexer to analyze.
     init(input: String) {
         self.input = input
+
+        // set initial state
+        reset()
     }
 
     // MARK: Public Methods
 
-    /// Analyze this lexer's source code and return the tokens.
+    /// Reset this analyzer's state.
+    ///
+    /// This is used only if the input should be reanalyzed.
+    func reset() {
+        currentPosition = input.startIndex
+    }
+
+    /// Analyze and return the next token in this lexer's source.
+    /// - Note: Analysis should be terminated once an end of file token is analyzed.
+    /// Once one is analyzed then every subsequent call to this method will return the same.
+    /// - Returns: The analyzed token.
+    func analyzeNext() throws -> Token {
+        skipWhitespace()
+
+        // get the new character to analyze
+        // if there is none then the input has been completely analyzed
+        guard let startIndex = currentPosition, let currentCharacter = currentCharacter else {
+            let token = createToken(kind: .endOfFile, startIndex: input.endIndex)
+            return token
+        }
+
+        // attempt to translate the current character to a token
+        // catch any errors that occur and wrap them in a source error
+        do {
+            // single character mapping
+            if let kind = singleCharacterMapping[currentCharacter] {
+                // consume the character
+                readCharacter()
+
+                // return the token
+                let token = createToken(kind: kind, startIndex: startIndex)
+                return token
+            }
+            // number literals
+            else if currentCharacter.isNumber {
+                let token = try readNumber()
+                return token
+            }
+            // if there is still nothing matched then this is an invalid character
+            else {
+                throw LexerError.invalidCharacter(character: currentCharacter)
+            }
+        }
+        catch {
+            let errorRange = range(from: startIndex)
+            throw SourceError(range: errorRange, wrapped: error)
+        }
+    }
+
+    /// Reset this lexer's state and analyze all of the tokens in it's source.
     /// - Returns: The analyzed tokens.
     func analyze() throws -> [Token] {
+        // reset state
+        reset()
+
+        // analyze all the tokens and return them
         var tokens = [Token]()
-
-        // reset state and analyze the input
-        currentPosition = input.startIndex
         while true {
-            skipWhitespace()
+            let token = try analyzeNext()
+            tokens.append(token)
 
-            // get the new character to analyze
-            // if there is none then the input has been completely analyzed
-            guard let startIndex = currentPosition, let currentCharacter = currentCharacter else {
-                let token = createToken(kind: .endOfFile, startIndex: input.endIndex)
-                tokens.append(token)
+            guard token.kind != .endOfFile else {
                 break
-            }
-
-            // attempt to translate the current character to a token
-            // catch any errors that occur and wrap them in a source error
-            do {
-                // single character mapping
-                if let kind = singleCharacterMapping[currentCharacter] {
-                    // consume the character
-                    readCharacter()
-
-                    // add the token
-                    let token = createToken(kind: kind, startIndex: startIndex)
-                    tokens.append(token)
-                }
-                // number literals
-                else if currentCharacter.isNumber {
-                    let token = try readNumber()
-                    tokens.append(token)
-                }
-                // if there is still nothing matched then this is an invalid character
-                else {
-                    throw LexerError.invalidCharacter(character: currentCharacter)
-                }
-            }
-            catch {
-                let errorRange = range(from: startIndex)
-                throw SourceError(range: errorRange, wrapped: error)
             }
         }
 
