@@ -10,6 +10,7 @@
 		ECA214562374516B002D25CA /* Little.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2144C2374516A002D25CA /* Little.framework */; };
 		ECA2145B2374516B002D25CA /* LittleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2145A2374516B002D25CA /* LittleTests.swift */; };
 		ECA2145D2374516B002D25CA /* Little.h in Headers */ = {isa = PBXBuildFile; fileRef = ECA2144F2374516A002D25CA /* Little.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECA2146A23745405002D25CA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2146923745405002D25CA /* Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		ECA214552374516B002D25CA /* LittleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LittleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA2145A2374516B002D25CA /* LittleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleTests.swift; sourceTree = "<group>"; };
 		ECA2145C2374516B002D25CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECA2146923745405002D25CA /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		ECA2144E2374516A002D25CA /* Little */ = {
 			isa = PBXGroup;
 			children = (
+				ECA21466237453F1002D25CA /* Lexer */,
 				ECA2144F2374516A002D25CA /* Little.h */,
 				ECA214502374516A002D25CA /* Info.plist */,
 			);
@@ -84,6 +87,14 @@
 				ECA2145C2374516B002D25CA /* Info.plist */,
 			);
 			path = LittleTests;
+			sourceTree = "<group>";
+		};
+		ECA21466237453F1002D25CA /* Lexer */ = {
+			isa = PBXGroup;
+			children = (
+				ECA2146923745405002D25CA /* Token.swift */,
+			);
+			path = Lexer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +159,7 @@
 				TargetAttributes = {
 					ECA2144B2374516A002D25CA = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					ECA214542374516B002D25CA = {
 						CreatedOnToolsVersion = 11.0;
@@ -195,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA2146A23745405002D25CA /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +353,7 @@
 		ECA214612374516B002D25CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZPZL835757;
@@ -356,6 +370,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = marika.Little;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +379,7 @@
 		ECA214622374516B002D25CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZPZL835757;
@@ -388,6 +404,7 @@
 		ECA214642374516B002D25CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZPZL835757;
 				INFOPLIST_FILE = LittleTests/Info.plist;
@@ -406,6 +423,7 @@
 		ECA214652374516B002D25CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZPZL835757;
 				INFOPLIST_FILE = LittleTests/Info.plist;
