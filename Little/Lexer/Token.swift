@@ -40,10 +40,10 @@ extension Token {
         /// Either the binary or unary `/` operator.
         case slash
 
-        /// The left part of the `(...)` operator.
+        /// The left part of the `(...)` punctuator.
         case leftParentheses
 
-        /// The right part of the `(...)` operator.
+        /// The right part of the `(...)` punctuator.
         case rightParentheses
 
         /// An integer literal.
@@ -55,5 +55,45 @@ extension Token {
         /// This should always be at the end of an input's analyzed tokens.
         /// If it is not then an error should be thrown.
         case endOfFile
+
+        // MARK: Public Properties
+
+        /// The category that this kind belongs to.
+        var category: Category {
+            switch self {
+            case .plus, .minus, .asterisk, .slash:
+                return .binaryOperator
+            case .leftParentheses, .rightParentheses:
+                return .punctuator
+            case .integer(_):
+                return .number
+            case .endOfFile:
+                return .special
+            }
+        }
+    }
+}
+
+// MARK: Kind.Category
+
+extension Token.Kind {
+    /// The different categories of token kinds.
+    ///
+    /// This is to allow matching multiple pre-defined types, without dealing with enum parameters.
+    enum Category {
+
+        // MARK: Cases
+
+        /// An operator which takes a left and right operand.
+        case binaryOperator
+
+        /// An operator which changes it's meaning depending on the context.
+        case punctuator
+
+        /// A number literal, either integer or floating point.
+        case number
+
+        /// A special token that is not generally presented to the user.
+        case special
     }
 }
