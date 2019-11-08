@@ -91,24 +91,24 @@ extension Token {
             case .plus, .minus:
                 return [
                     .unaryOperator,
-                    .binaryOperator
+                    .binaryOperator,
                 ]
             case .asterisk, .slash, .assignment:
                 return [
-                    .binaryOperator
+                    .binaryOperator,
                 ]
             case .leftParentheses, .rightParentheses:
                 return [
-                    .punctuator
+                    .punctuator,
                 ]
             case .keywordPrint, .keywordLet:
                 return [
                     .identifier,
-                    .keyword
+                    .keyword,
                 ]
             case .integer(_):
                 return [
-                    .number
+                    .number,
                 ]
             case .variable(_):
                 return [
@@ -116,7 +116,7 @@ extension Token {
                 ]
             case .endOfLine, .endOfFile:
                 return [
-                    .special
+                    .special,
                 ]
             }
         }

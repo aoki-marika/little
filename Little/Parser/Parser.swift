@@ -126,9 +126,29 @@ class Parser {
     ///               LIST exprlist
     /// ```
     private func statement() throws -> Line.Statement {
-        #warning("TODO: Proper statement parsing.")
-        try expression()
-        return .none
+        switch currentToken.kind {
+        case .keywordLet:
+            return try assignment()
+        default:
+            return try assignment()
+        }
+    }
+
+
+    /// ```
+    /// assignment ::= LET var = expression
+    ///                var = expression
+    /// ```
+    private func assignment() throws -> Line.Statement {
+        if currentToken.kind == .keywordLet {
+            try eat(kind: .keywordLet)
+        }
+
+        let name = try variable()
+        try eat(kind: .assignment)
+        let value = try expression()
+
+        return .assignment(variable: name, value: value)
     }
 
     /// ```
@@ -198,6 +218,8 @@ class Parser {
         }
     }
 
+    #warning("TODO: Replace these fatal errors with ParserErrors.")
+
     /// ```
     /// factor ::= var
     ///            number
@@ -217,12 +239,14 @@ class Parser {
         }
 
         switch token.kind {
+        case .variable(_):
+            return .variable(name: try variable())
         case .leftParentheses:
             try eat(kind: .leftParentheses)
-            let expression = try self.expression()
+            let inner = try expression()
             try eat(kind: .rightParentheses)
             return .wrappedExpression(
-                expression: expression
+                expression: inner
             )
         default:
             break
@@ -239,7 +263,7 @@ class Parser {
     /// digit ::= 0 ! 1 2 ! ... ! 9
     /// ```
     private func number() throws -> Expression.Node {
-        let kind = currentToken!.kind
+        let kind = currentToken.kind
 
         switch kind {
         case .integer(let value):
@@ -247,6 +271,21 @@ class Parser {
             return .integer(value: value)
         default:
             fatalError("invalid number token: \(kind)")
+        }
+    }
+
+    /// ```
+    /// var ::= A ! B ! ... ! Y ! Z
+    /// ```
+    private func variable() throws -> String {
+        let kind = currentToken.kind
+
+        switch kind {
+        case .variable(let name):
+            try eat(kind: kind)
+            return name
+        default:
+            fatalError("invalid variable token: \(kind)")
         }
     }
 }

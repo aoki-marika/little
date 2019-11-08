@@ -37,6 +37,10 @@ extension Expression {
         /// - Parameter value: The integer value of this node.
         case integer(value: Int)
 
+        /// A variable reference.
+        /// - Parameter name: The name of the variable this node is referencing.
+        case variable(name: String)
+
         /// Another expression.
         case wrappedExpression(expression: Expression)
     }
