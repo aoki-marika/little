@@ -116,6 +116,11 @@ class Lexer {
                 let token = try readNumber()
                 return token
             }
+            // string literals
+            else if currentCharacter == "\"" {
+                let token = try readString()
+                return token
+            }
             // end of line
             else if currentCharacter.isNewline {
                 // consume the character
@@ -235,6 +240,44 @@ class Lexer {
 
         // return the new number token
         return createToken(kind: .integer(value: value), startIndex: startIndex)
+    }
+
+    /// Read the string token from the current position of this lexer.
+    /// - Returns: The new string token.
+    private func readString() throws -> Token {
+        // get the start index of the string
+        // this should never happen, but just in case
+        guard let startIndex = currentPosition else {
+            fatalError("attempted to read string literal with no start index")
+        }
+
+        // read the entire string literal, with quotes
+        var literal = ""
+        var foundStart = false
+        while let currentCharacter = currentCharacter {
+            literal.append(currentCharacter)
+            readCharacter()
+
+            // break once a terminating quote is found
+            if currentCharacter == "\"" {
+                if foundStart {
+                    break
+                }
+
+                foundStart = true
+            }
+        }
+
+        // ensure the literal is valid
+        // must have individual beginning and terminating quotes
+        guard literal.hasPrefix("\"") && literal.hasSuffix("\"") && literal.count >= 2 else {
+            throw LexerError.unterminatedStringLiteral(literal: literal)
+        }
+
+        // drop the quotes from the literal and return the new token
+        literal = String(literal.dropFirst().dropLast())
+        let token = createToken(kind: .string(value: literal), startIndex: startIndex)
+        return token
     }
 
     /// Read the identifier token from the current position of this lexer.

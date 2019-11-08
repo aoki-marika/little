@@ -65,6 +65,10 @@ extension Token {
         /// - Parameter value: The integer value of the literal.
         case integer(value: Int)
 
+        /// A string literal.
+        /// - Parameter value: The string value of the literal.
+        case string(value: String)
+
         /// A named variable referencce.
         /// - Parameter name: The name of the variable to reference.
         case variable(name: String)
@@ -110,6 +114,10 @@ extension Token {
                 return [
                     .number,
                 ]
+            case .string(_):
+                return [
+                    .string,
+                ]
             case .variable(_):
                 return [
                     .identifier,
@@ -150,6 +158,9 @@ extension Token.Kind {
 
         /// A number literal, either integer or floating point.
         case number
+
+        /// A string literal.
+        case string
 
         /// A special token that is not generally presented to the user.
         case special

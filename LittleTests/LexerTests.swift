@@ -34,6 +34,75 @@ class LexerTests: XCTestCase {
         assertTokens(from: "  1 22 333 4444  ", equals: expected)
     }
 
+    func testStrings() {
+        // test the same strings in different scenarios
+        let expected = [
+            ExpectedToken(kind: .integer(value: 0),  literal: "0"),
+            ExpectedToken(
+                kind: .string(value: ""),
+                literal: "\"\""
+            ),
+            ExpectedToken(kind: .integer(value: 0),  literal: "0"),
+            ExpectedToken(kind: .endOfLine,          literal: "\n"),
+
+            ExpectedToken(kind: .integer(value: 10), literal: "10"),
+            ExpectedToken(
+                kind: .string(value: "teststring"),
+                literal: "\"teststring\""
+            ),
+            ExpectedToken(
+                kind: .string(value: "another"),
+                literal: "\"another\""
+            ),
+            ExpectedToken(kind: .integer(value: 10), literal: "10"),
+            ExpectedToken(kind: .endOfLine,          literal: "\n"),
+
+            ExpectedToken(kind: .integer(value: 20), literal: "20"),
+            ExpectedToken(
+                kind: .string(value: "test string with spaces"),
+                literal: "\"test string with spaces\""
+            ),
+            ExpectedToken(
+                kind: .string(value: "one"),
+                literal: "\"one\""
+            ),
+            ExpectedToken(kind: .integer(value: 20), literal: "20"),
+            ExpectedToken(kind: .endOfLine,          literal: "\n"),
+
+            ExpectedToken(kind: .integer(value: 30), literal: "30"),
+            ExpectedToken(
+                kind: .string(value: "test-string! with num83r5!!"),
+                literal: "\"test-string! with num83r5!!\""
+            ),
+            ExpectedToken(kind: .integer(value: 30), literal: "30"),
+            ExpectedToken(kind: .endOfLine,          literal: "\n"),
+
+            ExpectedToken(kind: .integer(value: 40), literal: "40"),
+            ExpectedToken(
+                kind: .string(value: "PRINT finally, 20 LET A = B keywords, and A B C variables"),
+                literal: "\"PRINT finally, 20 LET A = B keywords, and A B C variables\""
+            ),
+            ExpectedToken(kind: .integer(value: 40), literal: "40"),
+            ExpectedToken(kind: .endOfFile,          literal: ""),
+        ]
+
+        assertTokens(from: """
+            0 "" 0
+            10"teststring" "another" 10
+            20 "test string with spaces""one" 20
+            30"test-string! with num83r5!!" 30
+            40"PRINT finally, 20 LET A = B keywords, and A B C variables"40
+        """, equals: expected)
+
+        assertTokens(from: """
+            0 "" 0
+            10"teststring""another"10
+            20"test string with spaces" "one"20
+            30 "test-string! with num83r5!!"30
+            40   "PRINT finally, 20 LET A = B keywords, and A B C variables"    40
+        """, equals: expected)
+    }
+
     func testSingleOperators() {
         // test the same single character operators in different whitespace scenarios
         let expected = [
