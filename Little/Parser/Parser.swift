@@ -10,7 +10,7 @@ import Foundation
 
 /// The object for parsing analyzed tokens into lines.
 ///
-/// This is implementing accoring to the Tiny BASIC definition available at http://users.telenet.be/kim1-6502/tinybasic/tbum.html#appb
+/// This is implementing accoring to the Tiny BASIC definition available at [http://users.telenet.be/kim1-6502/tinybasic/tbum.html#appb](here).
 class Parser {
 
     // MARK: Private Properties
@@ -78,19 +78,22 @@ class Parser {
     ///                + unsignedexpr
     ///                - unsignedexpr
     /// ```
-    private func expression() throws -> ExpressionNode {
+    private func expression() throws -> Expression {
         let kind = currentToken.kind
+        let root: Expression.Node
 
         switch kind {
         case .plus, .minus:
             try eat(kind: kind)
-            return .unaryOperator(
+            root = .unaryOperator(
                 token: kind,
                 operand: try unsignedexpr()
             )
         default:
-            return try unsignedexpr()
+            root = try unsignedexpr()
         }
+
+        return Expression(root: root)
     }
 
     /// ```
@@ -98,7 +101,7 @@ class Parser {
     ///                  term + unsignedexpr
     ///                  term - unsignedexpr
     /// ```
-    private func unsignedexpr() throws -> ExpressionNode {
+    private func unsignedexpr() throws -> Expression.Node {
         let node = try term()
         let kind = currentToken.kind
 
@@ -120,7 +123,7 @@ class Parser {
     ///          factor * term
     ///          factor / term
     /// ```
-    private func term() throws -> ExpressionNode {
+    private func term() throws -> Expression.Node {
         let node = try factor()
         let kind = currentToken.kind
 
@@ -143,7 +146,7 @@ class Parser {
     ///            ( expression )
     ///            function
     /// ```
-    private func factor() throws -> ExpressionNode {
+    private func factor() throws -> Expression.Node {
         let token = currentToken!
 
         switch token.kind.category {
@@ -156,9 +159,11 @@ class Parser {
         switch token.kind {
         case .leftParentheses:
             try eat(kind: .leftParentheses)
-            let node = try expression()
+            let expression = try self.expression()
             try eat(kind: .rightParentheses)
-            return node
+            return .wrappedExpression(
+                expression: expression
+            )
         default:
             break
         }
@@ -173,7 +178,7 @@ class Parser {
     /// ```
     /// digit ::= 0 ! 1 2 ! ... ! 9
     /// ```
-    private func number() throws -> ExpressionNode {
+    private func number() throws -> Expression.Node {
         let kind = currentToken!.kind
 
         switch kind {
