@@ -21,6 +21,7 @@ class Lexer {
         "-": .minus,
         "*": .asterisk,
         "/": .slash,
+        "=": .assignment,
         "(": .leftParentheses,
         ")": .rightParentheses,
     ]

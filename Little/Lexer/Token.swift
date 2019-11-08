@@ -40,6 +40,9 @@ extension Token {
         /// The binary `/` operator.
         case slash
 
+        /// The binary `=` operator.
+        case assignment
+
         // MARK: Punctuators
 
         /// The left part of the `(...)` punctuator.
@@ -84,7 +87,7 @@ extension Token {
         /// The category that this kind belongs to.
         var category: Category {
             switch self {
-            case .plus, .minus, .asterisk, .slash:
+            case .plus, .minus, .asterisk, .slash, .assignment:
                 return .binaryOperator
             case .leftParentheses, .rightParentheses:
                 return .punctuator
