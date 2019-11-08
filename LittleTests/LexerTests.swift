@@ -129,6 +129,66 @@ class LexerTests: XCTestCase {
         )
     }
 
+    func testLines() {
+        // test various valid lines
+        assertTokens(
+            from: """
+            123 5 + 7
+            456 2 / 3
+            789+25
+            32767 20*2
+            1+1
+            10000+(-5)
+            10001-(+5)
+            """,
+            equals: [
+                ExpectedToken(kind: .integer(value: 123),   literal: "123"),
+                ExpectedToken(kind: .integer(value: 5),     literal: "5"),
+                ExpectedToken(kind: .plus,                  literal: "+"),
+                ExpectedToken(kind: .integer(value: 7),     literal: "7"),
+                ExpectedToken(kind: .endOfLine,             literal: "\n"),
+
+                ExpectedToken(kind: .integer(value: 456),   literal: "456"),
+                ExpectedToken(kind: .integer(value: 2),     literal: "2"),
+                ExpectedToken(kind: .slash,                 literal: "/"),
+                ExpectedToken(kind: .integer(value: 3),     literal: "3"),
+                ExpectedToken(kind: .endOfLine,             literal: "\n"),
+
+                ExpectedToken(kind: .integer(value: 789),   literal: "789"),
+                ExpectedToken(kind: .plus,                  literal: "+"),
+                ExpectedToken(kind: .integer(value: 25),    literal: "25"),
+                ExpectedToken(kind: .endOfLine,             literal: "\n"),
+
+                ExpectedToken(kind: .integer(value: 32767), literal: "32767"),
+                ExpectedToken(kind: .integer(value: 20),    literal: "20"),
+                ExpectedToken(kind: .asterisk,              literal: "*"),
+                ExpectedToken(kind: .integer(value: 2),     literal: "2"),
+                ExpectedToken(kind: .endOfLine,             literal: "\n"),
+
+                ExpectedToken(kind: .integer(value: 1),     literal: "1"),
+                ExpectedToken(kind: .plus,                  literal: "+"),
+                ExpectedToken(kind: .integer(value: 1),     literal: "1"),
+                ExpectedToken(kind: .endOfLine,             literal: "\n"),
+
+                ExpectedToken(kind: .integer(value: 10000), literal: "10000"),
+                ExpectedToken(kind: .plus,                  literal: "+"),
+                ExpectedToken(kind: .leftParentheses,       literal: "("),
+                    ExpectedToken(kind: .minus,                 literal: "-"),
+                    ExpectedToken(kind: .integer(value: 5),     literal: "5"),
+                ExpectedToken(kind: .rightParentheses,      literal: ")"),
+                ExpectedToken(kind: .endOfLine,             literal: "\n"),
+
+                ExpectedToken(kind: .integer(value: 10001), literal: "10001"),
+                ExpectedToken(kind: .minus,                 literal: "-"),
+                ExpectedToken(kind: .leftParentheses,       literal: "("),
+                    ExpectedToken(kind: .plus,                  literal: "+"),
+                    ExpectedToken(kind: .integer(value: 5),     literal: "5"),
+                ExpectedToken(kind: .rightParentheses,      literal: ")"),
+                ExpectedToken(kind: .endOfFile,             literal: "")
+            ]
+        )
+    }
+
     // MARK: Private Methods
 
     /// Assert that the tokens analyzed from the given input match the given expected tokens.
