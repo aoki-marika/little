@@ -70,9 +70,9 @@ class Parser {
     /// Ensure that the current token of this parser matches the given category, then advance the current token.
     /// - Parameter category: The category to ensure that the current token is.
     private func eat(category: Token.Kind.Category) throws {
-        guard currentToken.kind.category == category else {
-            let got = currentToken.kind.category
-            throw ParserError.unexpectedTokenCategory(expected: category, got: got)
+        guard currentToken.kind.categories.contains(category) else {
+            let got = currentToken.kind.categories
+            throw ParserError.unexpectedTokenCategories(expected: category, got: got)
         }
 
         currentToken = try lexer.analyzeNext()
@@ -207,11 +207,13 @@ class Parser {
     private func factor() throws -> Expression.Node {
         let token = currentToken!
 
-        switch token.kind.category {
-        case .number:
-            return try number()
-        default:
-            break
+        for category in token.kind.categories {
+            switch category {
+            case .number:
+                return try number()
+            default:
+                break
+            }
         }
 
         switch token.kind {

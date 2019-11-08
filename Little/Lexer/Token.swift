@@ -82,21 +82,39 @@ extension Token {
 
         // MARK: Public Properties
 
-        #warning("TODO: Need to communicate when a token kind conforms to multiple categories, such as - which is both an unary and binary operator.")
-
-        /// The category that this kind belongs to.
-        var category: Category {
+        /// The categories that this kind belongs to.
+        var categories: [Category] {
             switch self {
-            case .plus, .minus, .asterisk, .slash, .assignment:
-                return .binaryOperator
+            case .plus, .minus:
+                return [
+                    .unaryOperator,
+                    .binaryOperator
+                ]
+            case .asterisk, .slash, .assignment:
+                return [
+                    .binaryOperator
+                ]
             case .leftParentheses, .rightParentheses:
-                return .punctuator
-            case .keywordPrint, .variable(_):
-                return .keyword
+                return [
+                    .punctuator
+                ]
+            case .keywordPrint:
+                return [
+                    .identifier,
+                    .keyword
+                ]
             case .integer(_):
-                return .number
+                return [
+                    .number
+                ]
+            case .variable(_):
+                return [
+                    .identifier,
+                ]
             case .endOfLine, .endOfFile:
-                return .special
+                return [
+                    .special
+                ]
             }
         }
     }
@@ -105,12 +123,15 @@ extension Token {
 // MARK: Kind.Category
 
 extension Token.Kind {
-    /// The different categories of token kinds.
+    /// The different categories a token kind can conform to.
     ///
     /// This is to allow matching multiple pre-defined types, without dealing with enum parameters.
     enum Category {
 
         // MARK: Cases
+
+        /// An operator which takes a single operand.
+        case unaryOperator
 
         /// An operator which takes a left and right operand.
         case binaryOperator
@@ -118,7 +139,10 @@ extension Token.Kind {
         /// An operator which changes it's meaning depending on the context.
         case punctuator
 
-        /// A token which has special meaning in the grammar.
+        /// A sequence of characters that refer to a symbol or keyword.
+        case identifier
+
+        /// An identifier which has special meaning in the grammar.
         case keyword
 
         /// A number literal, either integer or floating point.
