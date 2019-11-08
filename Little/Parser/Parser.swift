@@ -30,21 +30,28 @@ class Parser {
 
     // MARK: Public Methods
 
-    /// Analyze and parse the tokens from this parser's lexer.
-    func parse() throws {
+    /// Analyze and parse the tokens from this parser's lexer into lines.
+    /// - Returns: The lines from the tokens of this parser's lexer.
+    func parse() throws -> [Line] {
         // reset state and get the first token
         lexer.reset()
         currentToken = try lexer.analyzeNext()
 
-        // parse all the tokens from the lexer
+        // parse all the tokens from the lexer into lines
         // wrap any errors in source errors
+        var lines = [Line]()
         do {
-            try expression()
+            repeat {
+                lines.append(try line())
+            } while currentToken.kind != .endOfFile
         }
         catch {
             let range = currentToken.range
             throw SourceError(range: range, wrapped: error)
         }
+
+        // return the new lines
+        return lines
     }
 
     // MARK: Private Methods
@@ -72,6 +79,57 @@ class Parser {
     }
 
     // MARK: Grammar
+
+    /// ```
+    /// line ::= number statement CR
+    ///          statement CR
+    /// ```
+    private func line() throws -> Line {
+        let lineNumber: Int?
+        switch currentToken.kind {
+        case .integer(let value):
+            lineNumber = value
+            try eat(kind: currentToken.kind)
+        default:
+            lineNumber = nil
+        }
+
+        let lineStatement = try statement()
+
+        switch currentToken.kind {
+        case .endOfLine, .endOfFile:
+            try eat(kind: currentToken.kind)
+        default:
+            throw ParserError.invalidLineEnd(kind: currentToken.kind)
+        }
+
+        let line = Line(number: lineNumber, statement: lineStatement)
+        return line
+    }
+
+    /// ```
+    /// statement ::= PRINT printlist
+    ///               PR printlist
+    ///               INPUT varlist
+    ///               LET var = expression
+    ///               var = expression
+    ///               GOTO expression
+    ///               GOSUB expression
+    ///               RETURN
+    ///               IF expression relop expression THEN statement
+    ///               IF expression relop expression statement
+    ///               REM commentstring
+    ///               CLEAR
+    ///               RUN
+    ///               RUN exprlist
+    ///               LIST
+    ///               LIST exprlist
+    /// ```
+    private func statement() throws -> Line.Statement {
+        #warning("TODO: Proper statement parsing.")
+        try expression()
+        return .none
+    }
 
     /// ```
     /// expression ::= unsignedexpr

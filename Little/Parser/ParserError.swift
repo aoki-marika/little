@@ -20,4 +20,8 @@ enum ParserError: Error {
     /// - Parameter expected: The token category that was expected.
     /// - Parameter got: The token category that was found.
     case unexpectedTokenCategory(expected: Token.Kind.Category, got: Token.Kind.Category)
+
+    /// The parser expected to find a line end, but found something else.
+    /// - Parameter kind: The kind of the token that was found instead.
+    case invalidLineEnd(kind: Token.Kind)
 }
