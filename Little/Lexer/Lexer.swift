@@ -8,6 +8,8 @@
 
 import Foundation
 
+#warning("TODO: Implement the line number parsing as described in http://users.telenet.be/kim1-6502/tinybasic/tbum.html#statements")
+
 /// An object for performing lexical analysis on source code.
 class Lexer {
 

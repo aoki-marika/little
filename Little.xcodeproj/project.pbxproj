@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC0464A423759ABE00E3F965 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0464A323759ABE00E3F965 /* Line.swift */; };
 		EC1D4AC82374A7610027FFA2 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D4AC72374A7610027FFA2 /* Expression.swift */; };
 		EC76BB1B23745A8800F1034F /* LexerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1A23745A8800F1034F /* LexerError.swift */; };
 		EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1C23745A9800F1034F /* SourceError.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC0464A323759ABE00E3F965 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		EC1D4AC72374A7610027FFA2 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
 		EC76BB1A23745A8800F1034F /* LexerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexerError.swift; sourceTree = "<group>"; };
 		EC76BB1C23745A9800F1034F /* SourceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceError.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		EC76BB1E237473BD00F1034F /* Parser */ = {
 			isa = PBXGroup;
 			children = (
+				EC0464A323759ABE00E3F965 /* Line.swift */,
 				EC1D4AC72374A7610027FFA2 /* Expression.swift */,
 				EC76BB1F237473CB00F1034F /* Parser.swift */,
 				EC76BB23237474DE00F1034F /* ParserError.swift */,
@@ -250,6 +253,7 @@
 				EC76BB20237473CB00F1034F /* Parser.swift in Sources */,
 				EC76BB2723748A7500F1034F /* Character.swift in Sources */,
 				EC1D4AC82374A7610027FFA2 /* Expression.swift in Sources */,
+				EC0464A423759ABE00E3F965 /* Line.swift in Sources */,
 				ECA2146A23745405002D25CA /* Token.swift in Sources */,
 				EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */,
 			);
