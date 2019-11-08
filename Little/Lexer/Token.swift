@@ -50,6 +50,12 @@ extension Token {
         /// - Parameter value: The integer value of the literal.
         case integer(value: Int)
 
+        /// The end of line marker.
+        ///
+        /// This, or for the last line `endOfFile`, should always be at the end of a line's statement.
+        /// If it's not then an error should be thrown.
+        case endOfLine
+
         /// The end of file marker.
         ///
         /// This should always be at the end of an input's analyzed tokens.
@@ -69,7 +75,7 @@ extension Token {
                 return .punctuator
             case .integer(_):
                 return .number
-            case .endOfFile:
+            case .endOfLine, .endOfFile:
                 return .special
             }
         }

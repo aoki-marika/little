@@ -20,7 +20,7 @@ class Lexer {
         "*": .asterisk,
         "/": .slash,
         "(": .leftParentheses,
-        ")": .rightParentheses
+        ")": .rightParentheses,
     ]
 
     /// The source code for this lexer to analyze.
@@ -106,6 +106,15 @@ class Lexer {
                 let token = try readNumber()
                 return token
             }
+            // end of line
+            else if currentCharacter.isNewline {
+                // consume the character
+                readCharacter()
+
+                // return the token
+                let token = createToken(kind: .endOfLine, startIndex: startIndex)
+                return token
+            }
             // if there is still nothing matched then this is an invalid character
             else {
                 throw LexerError.invalidCharacter(character: currentCharacter)
@@ -150,8 +159,10 @@ class Lexer {
     }
 
     /// Continuously read characters until the next non-whitespace character.
+    /// - Note: Newlines do not count as whitespace.
     private func skipWhitespace() {
-        while currentCharacter?.isWhitespace ?? false {
+        // swift thinks newlines are whitespace, which they arent here
+        while (currentCharacter?.isWhitespace ?? false) && !(currentCharacter?.isNewline ?? true) {
             readCharacter()
         }
     }
