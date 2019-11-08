@@ -26,7 +26,7 @@ extension Token {
     /// The different kinds that a token can be.
     enum Kind: Equatable {
 
-        // MARK: Cases
+        // MARK: Operators
 
         /// Either the binary or unary `+` operator
         case plus
@@ -40,15 +40,30 @@ extension Token {
         /// The binary `/` operator.
         case slash
 
+        // MARK: Punctuators
+
         /// The left part of the `(...)` punctuator.
         case leftParentheses
 
         /// The right part of the `(...)` punctuator.
         case rightParentheses
 
+        // MARK: Keywords
+
+        /// The `PRINT` keyword, used for printing to standard output.
+        case keywordPrint
+
+        // MARK: Values
+
         /// An integer literal.
         /// - Parameter value: The integer value of the literal.
         case integer(value: Int)
+
+        /// A named variable referencce.
+        /// - Parameter name: The name of the variable to reference.
+        case variable(name: String)
+
+        // MARK: Special
 
         /// The end of line marker.
         ///
@@ -73,6 +88,8 @@ extension Token {
                 return .binaryOperator
             case .leftParentheses, .rightParentheses:
                 return .punctuator
+            case .keywordPrint, .variable(_):
+                return .keyword
             case .integer(_):
                 return .number
             case .endOfLine, .endOfFile:
@@ -97,6 +114,9 @@ extension Token.Kind {
 
         /// An operator which changes it's meaning depending on the context.
         case punctuator
+
+        /// A token which has special meaning in the grammar.
+        case keyword
 
         /// A number literal, either integer or floating point.
         case number

@@ -25,6 +25,12 @@ class Lexer {
         ")": .rightParentheses,
     ]
 
+    /// The mapping of multiple character identifiers to keyword token kinds when analyzing source code.
+    /// - Note: These cannot be a single character, as variables take up all available single character identifiers.
+    private let keywordMapping: [String : Token.Kind] = [
+        "PRINT": .keywordPrint,
+    ]
+
     /// The source code for this lexer to analyze.
     private let input: String
 
@@ -117,8 +123,14 @@ class Lexer {
                 let token = createToken(kind: .endOfLine, startIndex: startIndex)
                 return token
             }
-            // if there is still nothing matched then this is an invalid character
             else {
+                // try an identifier as a last resort
+                if currentCharacter.isValidIdentifier {
+                    let token = try readIdentifier()
+                    return token
+                }
+
+                // if there is still nothing matched then this is an invalid character
                 throw LexerError.invalidCharacter(character: currentCharacter)
             }
         }
@@ -221,5 +233,45 @@ class Lexer {
 
         // return the new number token
         return createToken(kind: .integer(value: value), startIndex: startIndex)
+    }
+
+    /// Read the identifier token from the current position of this lexer.
+    /// - Returns: The new identifier token.
+    private func readIdentifier() throws -> Token {
+        // get the start index of the identifier
+        // this should never happen, but just in case
+        guard let startIndex = currentPosition else {
+            fatalError("attempted to read identifier with no start index")
+        }
+
+        // read the entire name of the identifier
+        var name = ""
+        repeat {
+            guard let currentCharacter = currentCharacter else {
+                break
+            }
+
+            name.append(currentCharacter)
+            readCharacter()
+        } while currentCharacter?.isValidIdentifier ?? false
+
+        // ensure the name is not empty
+        guard name.count > 0 else {
+            throw LexerError.invalidKeyword(keyword: name)
+        }
+
+        // return the proper type depending on the name
+        // variables use all 24 single characters from a-z
+        // and anything else can be a keyword
+        if name.count == 1 {
+            return createToken(kind: .variable(name: name), startIndex: startIndex)
+        }
+        else {
+            guard let kind = keywordMapping[name] else {
+                throw LexerError.invalidKeyword(keyword: name)
+            }
+
+            return createToken(kind: kind, startIndex: startIndex)
+        }
     }
 }

@@ -189,6 +189,64 @@ class LexerTests: XCTestCase {
         )
     }
 
+    func testVariables() {
+        // test various variable usages
+        assertTokens(
+            from: """
+            10 A = 5 / 2
+            20 B = A * 3
+            C = B / A * 20
+            Z = (C - A * B) / -2
+            30 PRINT Z
+            """,
+            equals: [
+                ExpectedToken(kind: .integer(value: 10),  literal: "10"),
+                ExpectedToken(kind: .variable(name: "A"), literal: "A"),
+                ExpectedToken(kind: .assignment,          literal: "="),
+                ExpectedToken(kind: .integer(value: 5),   literal: "5"),
+                ExpectedToken(kind: .slash,               literal: "/"),
+                ExpectedToken(kind: .integer(value: 2),   literal: "2"),
+                ExpectedToken(kind: .endOfLine,           literal: "\n"),
+
+                ExpectedToken(kind: .integer(value: 20),  literal: "20"),
+                ExpectedToken(kind: .variable(name: "B"), literal: "B"),
+                ExpectedToken(kind: .assignment,          literal: "="),
+                ExpectedToken(kind: .variable(name: "A"), literal: "A"),
+                ExpectedToken(kind: .asterisk,            literal: "*"),
+                ExpectedToken(kind: .integer(value: 3),   literal: "3"),
+                ExpectedToken(kind: .endOfLine,           literal: "\n"),
+
+                ExpectedToken(kind: .variable(name: "C"), literal: "C"),
+                ExpectedToken(kind: .assignment,          literal: "="),
+                ExpectedToken(kind: .variable(name: "B"), literal: "B"),
+                ExpectedToken(kind: .slash,               literal: "/"),
+                ExpectedToken(kind: .variable(name: "A"), literal: "A"),
+                ExpectedToken(kind: .asterisk,            literal: "*"),
+                ExpectedToken(kind: .integer(value: 20),  literal: "20"),
+                ExpectedToken(kind: .endOfLine,           literal: "\n"),
+
+                ExpectedToken(kind: .variable(name: "Z"), literal: "Z"),
+                ExpectedToken(kind: .assignment,          literal: "="),
+                ExpectedToken(kind: .leftParentheses,     literal: "("),
+                    ExpectedToken(kind: .variable(name: "C"), literal: "C"),
+                    ExpectedToken(kind: .minus,               literal: "-"),
+                    ExpectedToken(kind: .variable(name: "A"), literal: "A"),
+                    ExpectedToken(kind: .asterisk,            literal: "*"),
+                    ExpectedToken(kind: .variable(name: "B"), literal: "B"),
+                ExpectedToken(kind: .rightParentheses,    literal: ")"),
+                ExpectedToken(kind: .slash,               literal: "/"),
+                ExpectedToken(kind: .minus,               literal: "-"),
+                ExpectedToken(kind: .integer(value: 2),   literal: "2"),
+                ExpectedToken(kind: .endOfLine,           literal: "\n"),
+
+                ExpectedToken(kind: .integer(value: 30),  literal: "30"),
+                ExpectedToken(kind: .keywordPrint,        literal: "PRINT"),
+                ExpectedToken(kind: .variable(name: "Z"), literal: "Z"),
+                ExpectedToken(kind: .endOfFile,           literal: ""),
+            ]
+        )
+    }
+
     // MARK: Private Methods
 
     /// Assert that the tokens analyzed from the given input match the given expected tokens.

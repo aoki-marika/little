@@ -20,4 +20,8 @@ enum LexerError: Error {
     /// The lexer attempted to read an invalid number literal.
     /// - Parameter literal: The invalid number literal.
     case invalidNumberLiteral(literal: String)
+
+    /// The lexer attempted to read an invalid keyword.
+    /// - Parameter keyword: The invalid keyword.
+    case invalidKeyword(keyword: String)
 }
