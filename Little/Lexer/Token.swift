@@ -56,6 +56,9 @@ extension Token {
         /// The `PRINT` keyword, used for printing to standard output.
         case keywordPrint
 
+        /// The `LET` keyword, being an optional prefix for an assignment statement.
+        case keywordLet
+
         // MARK: Values
 
         /// An integer literal.
@@ -98,7 +101,7 @@ extension Token {
                 return [
                     .punctuator
                 ]
-            case .keywordPrint:
+            case .keywordPrint, .keywordLet:
                 return [
                     .identifier,
                     .keyword

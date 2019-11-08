@@ -30,6 +30,7 @@ class Lexer {
     /// - Note: These cannot be a single character, as variables take up all available single character identifiers.
     private let keywordMapping: [String : Token.Kind] = [
         "PRINT": .keywordPrint,
+        "LET": .keywordLet,
     ]
 
     /// The source code for this lexer to analyze.
