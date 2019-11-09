@@ -13,6 +13,9 @@ enum Statement: Equatable {
 
     // MARK: Cases
 
+    /// A statement which does nothing, used for empty lines.
+    case none
+
     /// Prints the given items to the standard output.
     /// - Parameter items: The items to print.
     case print(items: [PrintItem])

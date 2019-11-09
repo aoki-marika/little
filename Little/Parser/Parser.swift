@@ -91,6 +91,14 @@ class Parser {
             lineNumber = value
             try eat(kind: currentToken.kind)
         default:
+            // if there is no line number then this could be a blank line
+            // only lines without numbers can be blank, if there is a line number then there must be a statement
+            if currentToken.kind == .endOfLine || currentToken.kind == .endOfLine {
+                try eat(kind: currentToken.kind)
+                let line = Line(number: nil, statement: .none)
+                return line
+            }
+
             lineNumber = nil
         }
 

@@ -66,6 +66,10 @@ class Lexer {
             return nil
         }
 
+        guard currentPosition < input.endIndex else {
+            return nil
+        }
+
         return input[currentPosition]
     }
 
