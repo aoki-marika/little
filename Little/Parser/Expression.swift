@@ -9,7 +9,7 @@
 import Foundation
 
 /// The data structure for an expression that can be evaluated.
-struct Expression {
+struct Expression: Equatable {
 
     // MARK: Public Properties
 
@@ -21,7 +21,7 @@ struct Expression {
 
 extension Expression {
     /// A node within an expression's abstract syntax tree.
-    indirect enum Node {
+    indirect enum Node: Equatable {
 
         // MARK: Cases
 

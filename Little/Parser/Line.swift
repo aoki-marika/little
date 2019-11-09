@@ -9,7 +9,7 @@
 import Foundation
 
 /// The data structure for a single line within a program.
-struct Line {
+struct Line: Equatable {
 
     // MARK: Public Properties
 

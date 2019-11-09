@@ -9,7 +9,7 @@
 import Foundation
 
 /// The data structure for an item that can be printed to standard output.
-struct PrintItem {
+struct PrintItem: Equatable {
 
     // MARK: Public Properties
 
@@ -24,7 +24,7 @@ struct PrintItem {
 
 extension PrintItem {
     /// The different kinds of data that a print item can contain.
-    enum Kind {
+    enum Kind: Equatable {
 
         // MARK: Cases
 

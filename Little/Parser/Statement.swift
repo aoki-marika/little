@@ -9,7 +9,7 @@
 import Foundation
 
 /// The different statements that a line can perform.
-enum Statement {
+enum Statement: Equatable {
 
     // MARK: Cases
 
