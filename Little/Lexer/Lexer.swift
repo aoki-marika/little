@@ -11,7 +11,7 @@ import Foundation
 #warning("TODO: Implement the line number parsing as described in http://users.telenet.be/kim1-6502/tinybasic/tbum.html#statements")
 
 /// An object for performing lexical analysis on source code.
-class Lexer {
+public class Lexer {
 
     // MARK: Private Properties
 
@@ -76,7 +76,7 @@ class Lexer {
     // MARK: Initializers
 
     /// - Parameter input: The source code for this lexer to analyze.
-    init(input: String) {
+    public init(input: String) {
         self.input = input
 
         // set initial state
@@ -88,7 +88,7 @@ class Lexer {
     /// Reset this analyzer's state.
     ///
     /// This is used only if the source should be reanalyzed.
-    func reset() {
+    public func reset() {
         currentPosition = input.startIndex
     }
 
@@ -96,7 +96,7 @@ class Lexer {
     /// - Note: Analysis should be terminated once an end of file token is analyzed.
     /// Once one is analyzed then every subsequent call to this method will return the same.
     /// - Returns: The analyzed token.
-    func analyzeNext() throws -> Token {
+    public func analyzeNext() throws -> Token {
         skipWhitespace()
 
         // get the new character to analyze

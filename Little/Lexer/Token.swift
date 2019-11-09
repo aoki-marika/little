@@ -9,22 +9,22 @@
 import Foundation
 
 /// The data structure for an analyzed token from a lexer.
-struct Token {
+public struct Token {
 
     // MARK: Properties
 
     /// The kind of this token.
-    let kind: Kind
+    public let kind: Kind
 
     /// The range of this token in the original source code.
-    let range: Range<String.Index>
+    public let range: Range<String.Index>
 }
 
 // MARK: Kind
 
 extension Token {
     /// The different kinds that a token can be.
-    enum Kind: Equatable {
+    public enum Kind: Equatable {
 
         // MARK: Operators
 
@@ -98,7 +98,7 @@ extension Token {
         // MARK: Public Properties
 
         /// The categories that this kind belongs to.
-        var categories: [Category] {
+        public var categories: [Category] {
             switch self {
             case .plus, .minus:
                 return [
@@ -149,7 +149,7 @@ extension Token.Kind {
     /// The different categories a token kind can conform to.
     ///
     /// This is to allow matching multiple pre-defined types, without dealing with enum parameters.
-    enum Category {
+    public enum Category {
 
         // MARK: Cases
 
