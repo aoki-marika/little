@@ -145,6 +145,8 @@ class Lexer {
                 }
 
                 // if there is still nothing matched then this is an invalid character
+                // ensure to consume the character first to throw a proper range
+                readCharacter()
                 throw LexerError.invalidCharacter(character: currentCharacter)
             }
         }
