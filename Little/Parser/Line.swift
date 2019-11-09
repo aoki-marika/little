@@ -21,24 +21,3 @@ struct Line {
     /// The statement for this line to perform.
     let statement: Statement
 }
-
-// MARK: Statement
-
-extension Line {
-    #warning("TODO: Move out of Line.")
-
-    /// The different statements that a line can perform.
-    enum Statement {
-
-        // MARK: Cases
-
-        /// Prints the given items to the standard output.
-        /// - Parameter items: The items to print.
-        case print(items: [PrintItem])
-
-        /// Assign the given expression's value to the given named variable.
-        /// - Parameter variable: The name of the variable to assign.
-        /// - Parameter value: The expression to evaluate to get the value to assign.
-        case assignment(variable: String, value: Expression)
-    }
-}

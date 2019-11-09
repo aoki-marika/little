@@ -125,7 +125,7 @@ class Parser {
     ///               LIST
     ///               LIST exprlist
     /// ```
-    private func statement() throws -> Line.Statement {
+    private func statement() throws -> Statement {
         switch currentToken.kind {
         case .keywordPrint:
             try eat(kind: .keywordPrint)
@@ -195,7 +195,7 @@ class Parser {
     /// assignment ::= LET var = expression
     ///                var = expression
     /// ```
-    private func assignment() throws -> Line.Statement {
+    private func assignment() throws -> Statement {
         if currentToken.kind == .keywordLet {
             try eat(kind: .keywordLet)
         }
