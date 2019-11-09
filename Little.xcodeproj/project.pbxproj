@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EC0464A423759ABE00E3F965 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0464A323759ABE00E3F965 /* Line.swift */; };
 		EC1D4AC82374A7610027FFA2 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D4AC72374A7610027FFA2 /* Expression.swift */; };
+		EC20A1AA2376F5A100B86856 /* PrintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1A92376F5A100B86856 /* PrintItem.swift */; };
 		EC76BB1B23745A8800F1034F /* LexerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1A23745A8800F1034F /* LexerError.swift */; };
 		EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1C23745A9800F1034F /* SourceError.swift */; };
 		EC76BB20237473CB00F1034F /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1F237473CB00F1034F /* Parser.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		EC0464A323759ABE00E3F965 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		EC1D4AC72374A7610027FFA2 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
+		EC20A1A92376F5A100B86856 /* PrintItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintItem.swift; sourceTree = "<group>"; };
 		EC76BB1A23745A8800F1034F /* LexerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexerError.swift; sourceTree = "<group>"; };
 		EC76BB1C23745A9800F1034F /* SourceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceError.swift; sourceTree = "<group>"; };
 		EC76BB1F237473CB00F1034F /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			children = (
 				EC0464A323759ABE00E3F965 /* Line.swift */,
 				EC1D4AC72374A7610027FFA2 /* Expression.swift */,
+				EC20A1A92376F5A100B86856 /* PrintItem.swift */,
 				EC76BB1F237473CB00F1034F /* Parser.swift */,
 				EC76BB23237474DE00F1034F /* ParserError.swift */,
 			);
@@ -255,6 +258,7 @@
 				EC1D4AC82374A7610027FFA2 /* Expression.swift in Sources */,
 				EC0464A423759ABE00E3F965 /* Line.swift in Sources */,
 				ECA2146A23745405002D25CA /* Token.swift in Sources */,
+				EC20A1AA2376F5A100B86856 /* PrintItem.swift in Sources */,
 				EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

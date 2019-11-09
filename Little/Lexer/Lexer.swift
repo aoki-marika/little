@@ -24,12 +24,15 @@ class Lexer {
         "=": .assignment,
         "(": .leftParentheses,
         ")": .rightParentheses,
+        ",": .comma,
+        ";": .semicolon,
     ]
 
     /// The mapping of multiple character identifiers to keyword token kinds when analyzing source code.
     /// - Note: These cannot be a single character, as variables take up all available single character identifiers.
     private let keywordMapping: [String : Token.Kind] = [
         "PRINT": .keywordPrint,
+        "PR": .keywordPrint,
         "LET": .keywordLet,
     ]
 

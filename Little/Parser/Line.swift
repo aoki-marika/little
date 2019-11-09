@@ -25,13 +25,16 @@ struct Line {
 // MARK: Statement
 
 extension Line {
+    #warning("TODO: Move out of Line.")
+
     /// The different statements that a line can perform.
     enum Statement {
 
         // MARK: Cases
 
-        /// Does nothing, used to indicate empty lines with line numbers.
-        case none
+        /// Prints the given items to the standard output.
+        /// - Parameter items: The items to print.
+        case print(items: [PrintItem])
 
         /// Assign the given expression's value to the given named variable.
         /// - Parameter variable: The name of the variable to assign.

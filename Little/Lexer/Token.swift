@@ -51,6 +51,14 @@ extension Token {
         /// The right part of the `(...)` punctuator.
         case rightParentheses
 
+        // MARK: Separators
+
+        /// The `,` separator, used for lists and print items with spaces.
+        case comma
+
+        /// The `;` separator, used for print items without spaces.
+        case semicolon
+
         // MARK: Keywords
 
         /// The `PRINT` keyword, used for printing to standard output.
@@ -105,6 +113,10 @@ extension Token {
                 return [
                     .punctuator,
                 ]
+            case .comma, .semicolon:
+                return [
+                    .separator,
+                ]
             case .keywordPrint, .keywordLet:
                 return [
                     .identifier,
@@ -147,8 +159,11 @@ extension Token.Kind {
         /// An operator which takes a left and right operand.
         case binaryOperator
 
-        /// An operator which changes it's meaning depending on the context.
+        /// An operator which separates expressions.
         case punctuator
+
+        /// A character which is used to separate a list of items.
+        case separator
 
         /// A sequence of characters that refer to a symbol or keyword.
         case identifier

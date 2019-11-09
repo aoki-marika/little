@@ -127,6 +127,9 @@ class Parser {
     /// ```
     private func statement() throws -> Line.Statement {
         switch currentToken.kind {
+        case .keywordPrint:
+            try eat(kind: .keywordPrint)
+            return .print(items: try printlist())
         case .keywordLet:
             return try assignment()
         default:
@@ -134,6 +137,59 @@ class Parser {
         }
     }
 
+    /// ```
+    /// printlist ::=
+    ///               printitem
+    ///               printitem separator
+    ///               printitem separator printlist
+    /// ```
+    ///
+    /// - Note: This is implemented slightly different from the standard in that `,` terminates with a space and `;` terminates with nothing.
+    ///
+    /// If the statement ends with a separator then that separator is still printed.
+    /// If there is no separator then no separator is printed.
+    private func printlist() throws -> [PrintItem] {
+        var items = [PrintItem]()
+
+        // ensure there is a print item to read
+        if currentToken.kind != .endOfLine && currentToken.kind != .endOfFile {
+            let kind = try printitem()
+            let terminator: String
+
+            // read the terminator
+            switch currentToken.kind {
+            case .comma:
+                try eat(kind: .comma)
+                terminator = " "
+            case .semicolon:
+                try eat(kind: .semicolon)
+                terminator = ""
+            default:
+                terminator = ""
+                break
+            }
+
+            items.append(PrintItem(kind: kind, terminator: terminator))
+            items.append(contentsOf: try printlist())
+        }
+
+        return items
+    }
+
+    /// ```
+    /// printitem ::= expression
+    ///               "characterstring"
+    /// ```
+    private func printitem() throws -> PrintItem.Kind {
+        let kind = currentToken.kind
+
+        switch kind {
+        case .string(_):
+            return .string(string: try string())
+        default:
+            return .expression(expression: try expression())
+        }
+    }
 
     /// ```
     /// assignment ::= LET var = expression
@@ -271,6 +327,21 @@ class Parser {
             return .integer(value: value)
         default:
             fatalError("invalid number token: \(kind)")
+        }
+    }
+
+    /// ```
+    /// "characterstring"
+    /// ```
+    private func string() throws -> String {
+        let kind = currentToken.kind
+
+        switch kind {
+        case .string(let value):
+            try eat(kind: kind)
+            return value
+        default:
+            fatalError("invalid string token: \(kind)")
         }
     }
 
