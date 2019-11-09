@@ -21,7 +21,23 @@ enum ParserError: Error {
     /// - Parameter got: The token categories that were found.
     case unexpectedTokenCategories(expected: Token.Kind.Category, got: [Token.Kind.Category])
 
+    /// The parser expected to find the beginning of a factor, but found something else.
+    /// - Parameter got: The kind of the token that was found instead.
+    case expectedFactor(got: Token.Kind)
+
+    /// The parser expected to find a number literal, but found something else.
+    /// - Parameter got: The kind of the token that was found instead.
+    case expectedNumber(got: Token.Kind)
+
+    /// The parser expected to find a string literal, but found something else.
+    /// - Parameter got: The kind of the token that was found instead.
+    case expectedString(got: Token.Kind)
+
+    /// The parser expected to find a variable reference, but found something else.
+    /// - Parameter got: The kind of the token that was found instead.
+    case expectedVariable(got: Token.Kind)
+
     /// The parser expected to find a line end, but found something else.
     /// - Parameter kind: The kind of the token that was found instead.
-    case invalidLineEnd(kind: Token.Kind)
+    case expectedLineEnd(kind: Token.Kind)
 }

@@ -100,7 +100,7 @@ class Parser {
         case .endOfLine, .endOfFile:
             try eat(kind: currentToken.kind)
         default:
-            throw ParserError.invalidLineEnd(kind: currentToken.kind)
+            throw ParserError.expectedLineEnd(kind: currentToken.kind)
         }
 
         let line = Line(number: lineNumber, statement: lineStatement)
@@ -274,8 +274,6 @@ class Parser {
         }
     }
 
-    #warning("TODO: Replace these fatal errors with ParserErrors.")
-
     /// ```
     /// factor ::= var
     ///            number
@@ -308,7 +306,7 @@ class Parser {
             break
         }
 
-        fatalError("invalid factor token: \(token.kind)")
+        throw ParserError.expectedFactor(got: token.kind)
     }
 
     /// ```
@@ -326,7 +324,7 @@ class Parser {
             try eat(kind: kind)
             return .integer(value: value)
         default:
-            fatalError("invalid number token: \(kind)")
+            throw ParserError.expectedNumber(got: kind)
         }
     }
 
@@ -341,7 +339,7 @@ class Parser {
             try eat(kind: kind)
             return value
         default:
-            fatalError("invalid string token: \(kind)")
+            throw ParserError.expectedString(got: kind)
         }
     }
 
@@ -356,7 +354,7 @@ class Parser {
             try eat(kind: kind)
             return name
         default:
-            fatalError("invalid variable token: \(kind)")
+            throw ParserError.expectedVariable(got: kind)
         }
     }
 }
