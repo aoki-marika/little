@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// The data structure for an item that can be printed to standard output.
+/// The data structure for an item that can be printed to the interpreter's output.
 struct PrintItem: Equatable {
 
     // MARK: Public Properties

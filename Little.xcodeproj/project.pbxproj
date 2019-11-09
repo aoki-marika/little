@@ -11,6 +11,9 @@
 		EC1D4AC82374A7610027FFA2 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D4AC72374A7610027FFA2 /* Expression.swift */; };
 		EC20A1AA2376F5A100B86856 /* PrintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1A92376F5A100B86856 /* PrintItem.swift */; };
 		EC20A1AC2376FE1200B86856 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1AB2376FE1200B86856 /* Statement.swift */; };
+		EC20A1AF2377045B00B86856 /* Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1AE2377045B00B86856 /* Interpreter.swift */; };
+		EC20A1B32377102700B86856 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1B22377102700B86856 /* Output.swift */; };
+		EC20A1B52377122F00B86856 /* InterpreterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1B42377122F00B86856 /* InterpreterError.swift */; };
 		EC76BB1B23745A8800F1034F /* LexerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1A23745A8800F1034F /* LexerError.swift */; };
 		EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1C23745A9800F1034F /* SourceError.swift */; };
 		EC76BB20237473CB00F1034F /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1F237473CB00F1034F /* Parser.swift */; };
@@ -39,6 +42,9 @@
 		EC1D4AC72374A7610027FFA2 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
 		EC20A1A92376F5A100B86856 /* PrintItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintItem.swift; sourceTree = "<group>"; };
 		EC20A1AB2376FE1200B86856 /* Statement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
+		EC20A1AE2377045B00B86856 /* Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpreter.swift; sourceTree = "<group>"; };
+		EC20A1B22377102700B86856 /* Output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
+		EC20A1B42377122F00B86856 /* InterpreterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpreterError.swift; sourceTree = "<group>"; };
 		EC76BB1A23745A8800F1034F /* LexerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexerError.swift; sourceTree = "<group>"; };
 		EC76BB1C23745A9800F1034F /* SourceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceError.swift; sourceTree = "<group>"; };
 		EC76BB1F237473CB00F1034F /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -74,6 +80,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC20A1AD2377045000B86856 /* Interpreter */ = {
+			isa = PBXGroup;
+			children = (
+				EC20A1B22377102700B86856 /* Output.swift */,
+				EC20A1AE2377045B00B86856 /* Interpreter.swift */,
+				EC20A1B42377122F00B86856 /* InterpreterError.swift */,
+			);
+			path = Interpreter;
+			sourceTree = "<group>";
+		};
 		EC76BB1E237473BD00F1034F /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +135,7 @@
 				EC76BB1C23745A9800F1034F /* SourceError.swift */,
 				ECA21466237453F1002D25CA /* Lexer */,
 				EC76BB1E237473BD00F1034F /* Parser */,
+				EC20A1AD2377045000B86856 /* Interpreter */,
 				EC76BB2523748A6A00F1034F /* Extensions */,
 				ECA2144F2374516A002D25CA /* Little.h */,
 				ECA214502374516A002D25CA /* Info.plist */,
@@ -256,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC20A1AF2377045B00B86856 /* Interpreter.swift in Sources */,
 				EC76BB1B23745A8800F1034F /* LexerError.swift in Sources */,
 				EC76BB24237474DE00F1034F /* ParserError.swift in Sources */,
 				ECA21468237453FC002D25CA /* Lexer.swift in Sources */,
@@ -267,6 +285,7 @@
 				EC20A1AA2376F5A100B86856 /* PrintItem.swift in Sources */,
 				EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */,
 				EC20A1AC2376FE1200B86856 /* Statement.swift in Sources */,
+				EC20A1B32377102700B86856 /* Output.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -61,7 +61,7 @@ extension Token {
 
         // MARK: Keywords
 
-        /// The `PRINT` keyword, used for printing to standard output.
+        /// The `PRINT` keyword, used for printing to the interpreter's output.
         case keywordPrint
 
         /// The `LET` keyword, being an optional prefix for an assignment statement.

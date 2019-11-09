@@ -16,7 +16,8 @@ enum Statement: Equatable {
     /// A statement which does nothing, used for empty lines.
     case none
 
-    /// Prints the given items to the standard output.
+    /// Prints the given items to the interpreter's output.
+    /// - Note: A print statement always outputs a trailing newline, regardless of it's items.
     /// - Parameter items: The items to print.
     case print(items: [PrintItem])
 
