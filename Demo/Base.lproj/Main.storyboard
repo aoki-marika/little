@@ -45,7 +45,7 @@
                     <view key="view" contentMode="scaleToFill" id="pLW-kW-Huc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" name="EditorBackground"/>
                         <viewLayoutGuide key="safeArea" id="fDb-q4-0IU"/>
                     </view>
                     <navigationItem key="navigationItem" title="Editor" id="3XZ-ER-Ybm">
@@ -106,8 +106,8 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="Background">
-            <color red="0.15686274509803921" green="0.16470588235294117" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="EditorBackground">
+            <color red="1" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

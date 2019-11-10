@@ -27,7 +27,7 @@ class EditorTextView: UITextView {
         super.init(frame: .zero, textContainer: container)
 
         // setup the text view
-        backgroundColor = UIColor(named: "Background")!
+        backgroundColor = UIColor(named: "EditorBackground")!
         textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         autocapitalizationType = .none
         autocorrectionType = .no

@@ -56,7 +56,7 @@ class HighlightingTextStorage: NSTextStorage {
         // have to be done here instead of the property initializer as it needs self for fonts
         foregroundAttributes = [
             .font: regularFont,
-            .foregroundColor: UIColor(named: "Foreground")!,
+            .foregroundColor: UIColor(named: "EditorForeground")!,
         ]
 
         errorAttributes = [
@@ -69,23 +69,23 @@ class HighlightingTextStorage: NSTextStorage {
         tokenCategoryAttributes = [
             .operator: [
                 .font: regularFont,
-                .foregroundColor: UIColor(named: "Operator")!,
+                .foregroundColor: UIColor(named: "EditorOperator")!,
             ],
             .keyword: [
                 .font: boldFont,
-                .foregroundColor: UIColor(named: "Keyword")!,
+                .foregroundColor: UIColor(named: "EditorKeyword")!,
             ],
             .number: [
                 .font: regularFont,
-                .foregroundColor: UIColor(named: "Number")!,
+                .foregroundColor: UIColor(named: "EditorNumber")!,
             ],
             .string: [
                 .font: regularFont,
-                .foregroundColor: UIColor(named: "String")!,
+                .foregroundColor: UIColor(named: "EditorString")!,
             ],
             .variable: [
                 .font: regularFont,
-                .foregroundColor: UIColor(named: "Variable")!,
+                .foregroundColor: UIColor(named: "EditorVariable")!,
             ]
         ]
     }
