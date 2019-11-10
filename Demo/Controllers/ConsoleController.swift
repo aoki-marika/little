@@ -22,7 +22,7 @@ class ConsoleController: UIViewController {
         super.viewDidLoad()
 
         // setup the text view
-        textView.font = UIFont.monospacedSystemFont(ofSize: UIFont.labelFontSize, weight: .regular)
+        textView.font = UIFont.sourceFont()
         textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         textView.textContainer.lineFragmentPadding = 0
     }

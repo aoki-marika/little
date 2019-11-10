@@ -21,6 +21,7 @@
 		EC20A1C82377162000B86856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC20A1C72377162000B86856 /* Assets.xcassets */; };
 		EC20A1CB2377162000B86856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC20A1C92377162000B86856 /* LaunchScreen.storyboard */; };
 		EC20A1D12377199900B86856 /* SplitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1D02377199900B86856 /* SplitController.swift */; };
+		EC46E21B2378737100A49EE1 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E21A2378737100A49EE1 /* UIFont.swift */; };
 		EC6C2A452377236D0047E6F6 /* Little.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2144C2374516A002D25CA /* Little.framework */; };
 		EC6C2A462377236D0047E6F6 /* Little.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2144C2374516A002D25CA /* Little.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EC72516823773004006F2DB1 /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC72516723773004006F2DB1 /* EditorTextView.swift */; };
@@ -86,6 +87,7 @@
 		EC20A1CA2377162000B86856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC20A1CC2377162000B86856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC20A1D02377199900B86856 /* SplitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitController.swift; sourceTree = "<group>"; };
+		EC46E21A2378737100A49EE1 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		EC72516723773004006F2DB1 /* EditorTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		EC76BB1A23745A8800F1034F /* LexerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexerError.swift; sourceTree = "<group>"; };
 		EC76BB1C23745A9800F1034F /* SourceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceError.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				EC20A1D223771AA500B86856 /* Controllers */,
 				EC72516623772FF8006F2DB1 /* Views */,
 				ECD8ECA2237848C4007CCF6A /* Objects */,
+				EC46E2192378736700A49EE1 /* Extensions */,
 				EC20A1C42377161E00B86856 /* Main.storyboard */,
 				EC20A1C72377162000B86856 /* Assets.xcassets */,
 				EC20A1C92377162000B86856 /* LaunchScreen.storyboard */,
@@ -164,6 +167,14 @@
 				EC20A1C22377161E00B86856 /* ConsoleController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EC46E2192378736700A49EE1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC46E21A2378737100A49EE1 /* UIFont.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EC6C2A442377236D0047E6F6 /* Frameworks */ = {
@@ -411,6 +422,7 @@
 				EC20A1BD2377161E00B86856 /* AppDelegate.swift in Sources */,
 				ECD8ECA1237846D5007CCF6A /* HighlightingTextStorage.swift in Sources */,
 				EC20A1D12377199900B86856 /* SplitController.swift in Sources */,
+				EC46E21B2378737100A49EE1 /* UIFont.swift in Sources */,
 				EC72516823773004006F2DB1 /* EditorTextView.swift in Sources */,
 				EC20A1C12377161E00B86856 /* EditorController.swift in Sources */,
 				EC20A1C32377161E00B86856 /* ConsoleController.swift in Sources */,

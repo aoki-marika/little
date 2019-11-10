@@ -18,10 +18,10 @@ class HighlightingTextStorage: NSTextStorage {
     private let backing = NSMutableAttributedString()
 
     /// The regular font for text, used for most tokens and plain text.
-    private let regularFont = UIFont.monospacedSystemFont(ofSize: UIFont.labelFontSize, weight: .regular)
+    private let regularFont = UIFont.sourceFont()
 
     /// The bold font for text, used for special tokens like keywords.
-    private let boldFont = UIFont.monospacedSystemFont(ofSize: UIFont.labelFontSize, weight: .bold)
+    private let boldFont = UIFont.sourceFont(bold: true)
 
     /// The attributes for plain foreground text.
     private var foregroundAttributes = [NSAttributedString.Key : Any]()
