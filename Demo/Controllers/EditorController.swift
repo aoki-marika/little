@@ -20,6 +20,12 @@ class EditorController: UIViewController {
     /// The console controller that this editor is outputting to.
     private weak var consoleController: ConsoleController!
 
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(run), discoverabilityTitle: "Run"),
+        ]
+    }
+
     // MARK: Public Methods
 
     override func viewDidLoad() {
