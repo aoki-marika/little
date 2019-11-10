@@ -9,7 +9,7 @@
 import Foundation
 
 /// The protocol for an object that can handle text outputted from an interpreter, such as from a `PRINT` statement.
-protocol Output {
+public protocol Output {
 
     // MARK: Public Methods
 

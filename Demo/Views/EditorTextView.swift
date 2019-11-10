@@ -37,9 +37,6 @@ class EditorTextView: UITextView {
         spellCheckingType = .no
         keyboardType = .asciiCapable
         alwaysBounceVertical = true
-
-        // insert a demo program
-        storage.replaceCharacters(in: NSRange(location: 0, length: 0), with: "PRINT \"Hello, world!\"")
     }
 
     required init?(coder: NSCoder) {

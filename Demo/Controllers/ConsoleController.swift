@@ -7,7 +7,43 @@
 //
 
 import UIKit
+import Little
 
 /// The controller for the console half of the application split view.
 class ConsoleController: UIViewController {
+
+    // MARK: Outlets
+
+    @IBOutlet private weak var textView: UITextView!
+
+    // MARK: Public Methods
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // get the font
+        let fontDescriptor = UIFontDescriptor
+            .preferredFontDescriptor(withTextStyle: .body)
+            .withDesign(.monospaced)!
+
+        let font = UIFont(descriptor: fontDescriptor, size: 0)
+
+        // setup the text view
+        textView.font = font
+        textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        textView.textContainer.lineFragmentPadding = 0
+    }
+
+    /// Clear this console's output.
+    @IBAction func clear(_ sender: Any) {
+        textView.text.removeAll()
+    }
+}
+
+// MARK: Output
+
+extension ConsoleController: Output {
+    func receive(string: String) {
+        textView.text += string
+    }
 }

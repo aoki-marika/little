@@ -25,7 +25,6 @@
         <!--Master-->
         <scene sceneID="6t2-Ln-6eG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BdI-Qt-lLw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="1bL-og-rYz" userLabel="Master" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="47E-oR-kQx">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -35,6 +34,7 @@
                         <segue destination="VMh-FN-rcx" kind="relationship" relationship="rootViewController" id="oAc-Vx-VHz"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BdI-Qt-lLw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-39" y="-642"/>
         </scene>
@@ -64,23 +64,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Console" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC4-xE-3qM">
-                                <rect key="frame" x="175.5" y="437.5" width="63" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wyX-b2-XXM">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" name="ConsoleBackground"/>
+                                <color key="textColor" name="ConsoleForeground"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" name="ConsoleBackground"/>
                         <constraints>
-                            <constraint firstItem="pC4-xE-3qM" firstAttribute="centerY" secondItem="J5V-Te-L9R" secondAttribute="centerY" id="5IP-zd-h2t"/>
-                            <constraint firstItem="pC4-xE-3qM" firstAttribute="centerX" secondItem="J5V-Te-L9R" secondAttribute="centerX" id="q3u-4l-SW9"/>
+                            <constraint firstItem="0SQ-kd-rJt" firstAttribute="trailing" secondItem="wyX-b2-XXM" secondAttribute="trailing" id="KcG-yw-fcJ"/>
+                            <constraint firstItem="wyX-b2-XXM" firstAttribute="leading" secondItem="0SQ-kd-rJt" secondAttribute="leading" id="PKE-sR-4dj"/>
+                            <constraint firstItem="0SQ-kd-rJt" firstAttribute="bottom" secondItem="wyX-b2-XXM" secondAttribute="bottom" id="oF6-gb-qrg"/>
+                            <constraint firstItem="wyX-b2-XXM" firstAttribute="top" secondItem="0SQ-kd-rJt" secondAttribute="top" id="yQN-70-fId"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0SQ-kd-rJt"/>
                     </view>
                     <navigationItem key="navigationItem" title="Console" id="UyK-8d-qKp">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="cIq-Il-FJ4"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="cIq-Il-FJ4">
+                            <connections>
+                                <action selector="clear:" destination="d1V-JU-mRP" id="nam-6M-m38"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="wyX-b2-XXM" id="K1Z-kU-7rV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b21-Hv-Lcj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,8 +116,14 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="ConsoleBackground">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="ConsoleForeground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="EditorBackground">
-            <color red="1" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>
