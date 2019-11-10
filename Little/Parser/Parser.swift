@@ -38,7 +38,7 @@ class Parser {
         currentToken = try lexer.analyzeNext()
 
         // parse all the tokens from the lexer into lines
-        // wrap any errors in source errors
+        // wrap any errors in source errors if they arent already
         var lines = [Line]()
         do {
             repeat {
@@ -46,6 +46,10 @@ class Parser {
             } while currentToken.kind != .endOfFile
         }
         catch {
+            guard !(error is SourceError) else {
+                throw error
+            }
+
             let range = currentToken.range
             throw SourceError(range: range, wrapped: error)
         }
