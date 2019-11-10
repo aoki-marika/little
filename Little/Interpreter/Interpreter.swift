@@ -9,7 +9,7 @@
 import Foundation
 
 /// The object for interpreting lines from a parser.
-class Interpreter {
+public class Interpreter {
 
     // MARK: Private Properties
 
@@ -41,10 +41,18 @@ class Interpreter {
         self.output = output
     }
 
+    /// - Parameter input: The program for this interpreter to interpret.
+    /// - Parameter output: The output for this interpreter to output text to.
+    public convenience init(input: String, output: Output) {
+        let lexer = Lexer(input: input)
+        let parser = Parser(lexer: lexer)
+        self.init(parser: parser, output: output)
+    }
+
     // MARK: Public Methods
 
     /// Reset this interpreter's state and parse the lines again.
-    func start() throws {
+    public func start() throws {
         lines = try parser.parse()
         currentOffset = 0
         lineNumbers = [:]
@@ -54,7 +62,7 @@ class Interpreter {
     /// Execute the next line in this interpreter.
     /// - Returns: Whether or not this interpreter has reached the end of it's program.
     /// If it has, then execution should complete and this method should not be called again without first calling `start()`.
-    func step() throws -> Bool {
+    public func step() throws -> Bool {
         guard currentOffset < lines.count else {
             return true
         }
