@@ -25,6 +25,7 @@
 		ECA2145D2374516B002D25CA /* Little.h in Headers */ = {isa = PBXBuildFile; fileRef = ECA2144F2374516A002D25CA /* Little.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ECA21468237453FC002D25CA /* Lexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA21467237453FC002D25CA /* Lexer.swift */; };
 		ECA2146A23745405002D25CA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2146923745405002D25CA /* Token.swift */; };
+		ECD8ECA1237846D5007CCF6A /* HighlightingTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD8ECA0237846D5007CCF6A /* HighlightingTextStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		ECA2145C2374516B002D25CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA21467237453FC002D25CA /* Lexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lexer.swift; sourceTree = "<group>"; };
 		ECA2146923745405002D25CA /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		ECD8ECA0237846D5007CCF6A /* HighlightingTextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightingTextStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
