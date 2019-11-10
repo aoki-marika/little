@@ -67,17 +67,6 @@ class Parser {
         currentToken = try lexer.analyzeNext()
     }
 
-    /// Ensure that the current token of this parser matches the given category, then advance the current token.
-    /// - Parameter category: The category to ensure that the current token is.
-    private func eat(category: Token.Kind.Category) throws {
-        guard currentToken.kind.categories.contains(category) else {
-            let got = currentToken.kind.categories
-            throw ParserError.unexpectedTokenCategories(expected: category, got: got)
-        }
-
-        currentToken = try lexer.analyzeNext()
-    }
-
     // MARK: Grammar
 
     /// ```

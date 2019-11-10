@@ -100,44 +100,18 @@ extension Token {
         /// The categories that this kind belongs to.
         public var categories: [Category] {
             switch self {
-            case .plus, .minus:
-                return [
-                    .unaryOperator,
-                    .binaryOperator,
-                ]
-            case .asterisk, .slash, .assignment:
-                return [
-                    .binaryOperator,
-                ]
-            case .leftParentheses, .rightParentheses:
-                return [
-                    .punctuator,
-                ]
-            case .comma, .semicolon:
-                return [
-                    .separator,
-                ]
+            case .plus, .minus, .asterisk, .slash:
+                return [.operator]
             case .keywordPrint, .keywordLet:
-                return [
-                    .identifier,
-                    .keyword,
-                ]
+                return [.keyword]
             case .integer(_):
-                return [
-                    .number,
-                ]
+                return [.number]
             case .string(_):
-                return [
-                    .string,
-                ]
+                return [.string]
             case .variable(_):
-                return [
-                    .identifier,
-                ]
-            case .endOfLine, .endOfFile:
-                return [
-                    .special,
-                ]
+                return [.variable]
+            default:
+                return []
             }
         }
     }
@@ -148,25 +122,13 @@ extension Token {
 extension Token.Kind {
     /// The different categories a token kind can conform to.
     ///
-    /// This is to allow matching multiple pre-defined types, without dealing with enum parameters.
+    /// This is to allow match token kinds without dealing with parameters, and to allow easier implementation of syntax highlighting.
     public enum Category {
 
         // MARK: Cases
 
-        /// An operator which takes a single operand.
-        case unaryOperator
-
-        /// An operator which takes a left and right operand.
-        case binaryOperator
-
-        /// An operator which separates expressions.
-        case punctuator
-
-        /// A character which is used to separate a list of items.
-        case separator
-
-        /// A sequence of characters that refer to a symbol or keyword.
-        case identifier
+        /// A mathematical operator, typically `+`, `-`, `*`, or `/`.
+        case `operator`
 
         /// An identifier which has special meaning in the grammar.
         case keyword
@@ -177,7 +139,7 @@ extension Token.Kind {
         /// A string literal.
         case string
 
-        /// A special token that is not generally presented to the user.
-        case special
+        /// A named variable reference.
+        case variable
     }
 }
