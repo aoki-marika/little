@@ -15,7 +15,6 @@
 		EC20A1B32377102700B86856 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1B22377102700B86856 /* Output.swift */; };
 		EC20A1B52377122F00B86856 /* InterpreterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1B42377122F00B86856 /* InterpreterError.swift */; };
 		EC20A1BD2377161E00B86856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1BC2377161E00B86856 /* AppDelegate.swift */; };
-		EC20A1BF2377161E00B86856 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1BE2377161E00B86856 /* SceneDelegate.swift */; };
 		EC20A1C12377161E00B86856 /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1C02377161E00B86856 /* EditorController.swift */; };
 		EC20A1C32377161E00B86856 /* ConsoleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1C22377161E00B86856 /* ConsoleController.swift */; };
 		EC20A1C62377161E00B86856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC20A1C42377161E00B86856 /* Main.storyboard */; };
@@ -80,7 +79,6 @@
 		EC20A1B42377122F00B86856 /* InterpreterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpreterError.swift; sourceTree = "<group>"; };
 		EC20A1BA2377161E00B86856 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC20A1BC2377161E00B86856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC20A1BE2377161E00B86856 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EC20A1C02377161E00B86856 /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
 		EC20A1C22377161E00B86856 /* ConsoleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleController.swift; sourceTree = "<group>"; };
 		EC20A1C52377161E00B86856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				EC20A1BC2377161E00B86856 /* AppDelegate.swift */,
-				EC20A1BE2377161E00B86856 /* SceneDelegate.swift */,
 				EC20A1D223771AA500B86856 /* Controllers */,
 				EC72516623772FF8006F2DB1 /* Views */,
 				ECD8ECA2237848C4007CCF6A /* Objects */,
@@ -412,7 +409,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC20A1BD2377161E00B86856 /* AppDelegate.swift in Sources */,
-				EC20A1BF2377161E00B86856 /* SceneDelegate.swift in Sources */,
 				ECD8ECA1237846D5007CCF6A /* HighlightingTextStorage.swift in Sources */,
 				EC20A1D12377199900B86856 /* SplitController.swift in Sources */,
 				EC72516823773004006F2DB1 /* EditorTextView.swift in Sources */,
@@ -493,7 +489,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZPZL835757;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -512,7 +508,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZPZL835757;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

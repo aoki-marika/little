@@ -21,15 +21,8 @@ class ConsoleController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // get the font
-        let fontDescriptor = UIFontDescriptor
-            .preferredFontDescriptor(withTextStyle: .body)
-            .withDesign(.monospaced)!
-
-        let font = UIFont(descriptor: fontDescriptor, size: 0)
-
         // setup the text view
-        textView.font = font
+        textView.font = UIFont.monospacedSystemFont(ofSize: UIFont.labelFontSize, weight: .regular)
         textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         textView.textContainer.lineFragmentPadding = 0
     }
