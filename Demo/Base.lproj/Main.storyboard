@@ -49,7 +49,11 @@
                         <viewLayoutGuide key="safeArea" id="fDb-q4-0IU"/>
                     </view>
                     <navigationItem key="navigationItem" title="Editor" id="3XZ-ER-Ybm">
-                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="zdB-hS-vsF"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="zdB-hS-vsF">
+                            <connections>
+                                <action selector="run:" destination="VMh-FN-rcx" id="cfn-7P-78J"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZn-AP-i0i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
