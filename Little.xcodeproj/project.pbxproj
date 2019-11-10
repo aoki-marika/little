@@ -14,6 +14,17 @@
 		EC20A1AF2377045B00B86856 /* Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1AE2377045B00B86856 /* Interpreter.swift */; };
 		EC20A1B32377102700B86856 /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1B22377102700B86856 /* Output.swift */; };
 		EC20A1B52377122F00B86856 /* InterpreterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1B42377122F00B86856 /* InterpreterError.swift */; };
+		EC20A1BD2377161E00B86856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1BC2377161E00B86856 /* AppDelegate.swift */; };
+		EC20A1BF2377161E00B86856 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1BE2377161E00B86856 /* SceneDelegate.swift */; };
+		EC20A1C12377161E00B86856 /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1C02377161E00B86856 /* EditorController.swift */; };
+		EC20A1C32377161E00B86856 /* ConsoleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1C22377161E00B86856 /* ConsoleController.swift */; };
+		EC20A1C62377161E00B86856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC20A1C42377161E00B86856 /* Main.storyboard */; };
+		EC20A1C82377162000B86856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC20A1C72377162000B86856 /* Assets.xcassets */; };
+		EC20A1CB2377162000B86856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC20A1C92377162000B86856 /* LaunchScreen.storyboard */; };
+		EC20A1D12377199900B86856 /* SplitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1D02377199900B86856 /* SplitController.swift */; };
+		EC6C2A452377236D0047E6F6 /* Little.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2144C2374516A002D25CA /* Little.framework */; };
+		EC6C2A462377236D0047E6F6 /* Little.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2144C2374516A002D25CA /* Little.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EC72516823773004006F2DB1 /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC72516723773004006F2DB1 /* EditorTextView.swift */; };
 		EC76BB1B23745A8800F1034F /* LexerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1A23745A8800F1034F /* LexerError.swift */; };
 		EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1C23745A9800F1034F /* SourceError.swift */; };
 		EC76BB20237473CB00F1034F /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC76BB1F237473CB00F1034F /* Parser.swift */; };
@@ -29,6 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EC6C2A472377236D0047E6F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECA214432374516A002D25CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECA2144B2374516A002D25CA;
+			remoteInfo = Little;
+		};
 		ECA214572374516B002D25CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ECA214432374516A002D25CA /* Project object */;
@@ -38,6 +56,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EC6C2A492377236D0047E6F6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EC6C2A462377236D0047E6F6 /* Little.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		EC0464A323759ABE00E3F965 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		EC1D4AC72374A7610027FFA2 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
@@ -46,6 +78,17 @@
 		EC20A1AE2377045B00B86856 /* Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpreter.swift; sourceTree = "<group>"; };
 		EC20A1B22377102700B86856 /* Output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
 		EC20A1B42377122F00B86856 /* InterpreterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpreterError.swift; sourceTree = "<group>"; };
+		EC20A1BA2377161E00B86856 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC20A1BC2377161E00B86856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC20A1BE2377161E00B86856 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EC20A1C02377161E00B86856 /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
+		EC20A1C22377161E00B86856 /* ConsoleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleController.swift; sourceTree = "<group>"; };
+		EC20A1C52377161E00B86856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC20A1C72377162000B86856 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC20A1CA2377162000B86856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC20A1CC2377162000B86856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC20A1D02377199900B86856 /* SplitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitController.swift; sourceTree = "<group>"; };
+		EC72516723773004006F2DB1 /* EditorTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		EC76BB1A23745A8800F1034F /* LexerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexerError.swift; sourceTree = "<group>"; };
 		EC76BB1C23745A9800F1034F /* SourceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceError.swift; sourceTree = "<group>"; };
 		EC76BB1F237473CB00F1034F /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -64,6 +107,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EC20A1B72377161E00B86856 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC6C2A452377236D0047E6F6 /* Little.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECA214492374516A002D25CA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,6 +143,47 @@
 			path = Interpreter;
 			sourceTree = "<group>";
 		};
+		EC20A1BB2377161E00B86856 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				EC20A1BC2377161E00B86856 /* AppDelegate.swift */,
+				EC20A1BE2377161E00B86856 /* SceneDelegate.swift */,
+				EC20A1D223771AA500B86856 /* Controllers */,
+				EC72516623772FF8006F2DB1 /* Views */,
+				ECD8ECA2237848C4007CCF6A /* Objects */,
+				EC20A1C42377161E00B86856 /* Main.storyboard */,
+				EC20A1C72377162000B86856 /* Assets.xcassets */,
+				EC20A1C92377162000B86856 /* LaunchScreen.storyboard */,
+				EC20A1CC2377162000B86856 /* Info.plist */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		EC20A1D223771AA500B86856 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EC20A1D02377199900B86856 /* SplitController.swift */,
+				EC20A1C02377161E00B86856 /* EditorController.swift */,
+				EC20A1C22377161E00B86856 /* ConsoleController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EC6C2A442377236D0047E6F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC72516623772FF8006F2DB1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EC72516723773004006F2DB1 /* EditorTextView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		EC76BB1E237473BD00F1034F /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +210,9 @@
 			children = (
 				ECA2144E2374516A002D25CA /* Little */,
 				ECA214592374516B002D25CA /* LittleTests */,
+				EC20A1BB2377161E00B86856 /* Demo */,
 				ECA2144D2374516A002D25CA /* Products */,
+				EC6C2A442377236D0047E6F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +221,7 @@
 			children = (
 				ECA2144C2374516A002D25CA /* Little.framework */,
 				ECA214552374516B002D25CA /* LittleTests.xctest */,
+				EC20A1BA2377161E00B86856 /* Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,6 +260,14 @@
 			path = Lexer;
 			sourceTree = "<group>";
 		};
+		ECD8ECA2237848C4007CCF6A /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				ECD8ECA0237846D5007CCF6A /* HighlightingTextStorage.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -179,6 +282,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		EC20A1B92377161E00B86856 /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC20A1CD2377162000B86856 /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				EC20A1B62377161E00B86856 /* Sources */,
+				EC20A1B72377161E00B86856 /* Frameworks */,
+				EC20A1B82377161E00B86856 /* Resources */,
+				EC6C2A492377236D0047E6F6 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC6C2A482377236D0047E6F6 /* PBXTargetDependency */,
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = EC20A1BA2377161E00B86856 /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		ECA2144B2374516A002D25CA /* Little */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ECA214602374516B002D25CA /* Build configuration list for PBXNativeTarget "Little" */;
@@ -225,6 +347,9 @@
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = Marika;
 				TargetAttributes = {
+					EC20A1B92377161E00B86856 = {
+						CreatedOnToolsVersion = 11.0;
+					};
 					ECA2144B2374516A002D25CA = {
 						CreatedOnToolsVersion = 11.0;
 						LastSwiftMigration = 1100;
@@ -249,11 +374,22 @@
 			targets = (
 				ECA2144B2374516A002D25CA /* Little */,
 				ECA214542374516B002D25CA /* LittleTests */,
+				EC20A1B92377161E00B86856 /* Demo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EC20A1B82377161E00B86856 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC20A1CB2377162000B86856 /* LaunchScreen.storyboard in Resources */,
+				EC20A1C82377162000B86856 /* Assets.xcassets in Resources */,
+				EC20A1C62377161E00B86856 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECA2144A2374516A002D25CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -271,6 +407,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EC20A1B62377161E00B86856 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC20A1BD2377161E00B86856 /* AppDelegate.swift in Sources */,
+				EC20A1BF2377161E00B86856 /* SceneDelegate.swift in Sources */,
+				ECD8ECA1237846D5007CCF6A /* HighlightingTextStorage.swift in Sources */,
+				EC20A1D12377199900B86856 /* SplitController.swift in Sources */,
+				EC72516823773004006F2DB1 /* EditorTextView.swift in Sources */,
+				EC20A1C12377161E00B86856 /* EditorController.swift in Sources */,
+				EC20A1C32377161E00B86856 /* ConsoleController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECA214482374516A002D25CA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -280,6 +430,7 @@
 				EC76BB24237474DE00F1034F /* ParserError.swift in Sources */,
 				ECA21468237453FC002D25CA /* Lexer.swift in Sources */,
 				EC76BB20237473CB00F1034F /* Parser.swift in Sources */,
+				EC20A1B52377122F00B86856 /* InterpreterError.swift in Sources */,
 				EC76BB2723748A7500F1034F /* Character.swift in Sources */,
 				EC1D4AC82374A7610027FFA2 /* Expression.swift in Sources */,
 				EC0464A423759ABE00E3F965 /* Line.swift in Sources */,
@@ -303,6 +454,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EC6C2A482377236D0047E6F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ECA2144B2374516A002D25CA /* Little */;
+			targetProxy = EC6C2A472377236D0047E6F6 /* PBXContainerItemProxy */;
+		};
 		ECA214582374516B002D25CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ECA2144B2374516A002D25CA /* Little */;
@@ -310,7 +466,62 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		EC20A1C42377161E00B86856 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC20A1C52377161E00B86856 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC20A1C92377162000B86856 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC20A1CA2377162000B86856 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		EC20A1CE2377162000B86856 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZPZL835757;
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = marika.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		EC20A1CF2377162000B86856 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZPZL835757;
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = marika.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
 		ECA2145E2374516B002D25CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -523,6 +734,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EC20A1CD2377162000B86856 /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC20A1CE2377162000B86856 /* Debug */,
+				EC20A1CF2377162000B86856 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ECA214462374516A002D25CA /* Build configuration list for PBXProject "Little" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

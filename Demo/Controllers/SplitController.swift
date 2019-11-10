@@ -8,12 +8,16 @@
 
 import UIKit
 
-class SplitController: UISplitViewController, UISplitViewControllerDelegate {
+/// The controller for the root split view of the application.
+class SplitController: UISplitViewController {
+
+    // MARK: Public Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
 
+        // make the split 50/50
+        // need to increase maximum width to allow this
         maximumPrimaryColumnWidth = .greatestFiniteMagnitude
         preferredPrimaryColumnWidthFraction = 0.5
     }
