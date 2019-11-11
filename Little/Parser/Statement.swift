@@ -30,6 +30,13 @@ indirect enum Statement: Equatable {
     /// - Parameter line: The expression to evaluate to get the line number to go to.
     case goto(line: Expression)
 
+    /// Change the sequence in which the program executes by moving to the subroutine at the given number.
+    /// - Parameter line: The expression to evaluate to get the line number of the subroutine.
+    case goSub(line: Expression)
+
+    /// Return from the current subroutine to the line that began it.
+    case `return`
+
     /// If the given left and right operands compare true using the given relational operator, then execute the given statement.
     /// - Parameter token: The token kind to infer the operation from. Must belong to the relational operations category.
     /// - Parameter left: The left operand.

@@ -44,6 +44,8 @@ public class Lexer {
         "PR": .keywordPrint,
         "LET": .keywordLet,
         "GOTO": .keywordGoto,
+        "GOSUB": .keywordGoSub,
+        "RETURN": .keywordReturn,
         "IF": .keywordIf,
         "THEN": .keywordThen,
         "REM": .keywordRem,

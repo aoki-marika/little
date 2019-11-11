@@ -159,6 +159,12 @@ class Parser {
         case .keywordGoto:
             try eat(kind: .keywordGoto)
             return .goto(line: try expression())
+        case .keywordGoSub:
+            try eat(kind: .keywordGoSub)
+            return .goSub(line: try expression())
+        case .keywordReturn:
+            try eat(kind: .keywordReturn)
+            return .return
         case .keywordIf:
             try eat(kind: .keywordIf)
             let left = try expression()

@@ -85,6 +85,12 @@ extension Token {
         /// The `GOTO` keyword, used for changing the sequence in which the program executes.
         case keywordGoto
 
+        /// The `GOSUB` keyword, functions like `GOTO` except the `RETURN` keyword can be used to return to the line that performed the `GOSUB`.
+        case keywordGoSub
+
+        /// The `RETURN` keyword, used to return to the last line that performed a `GOSUB` statement.
+        case keywordReturn
+
         /// The `IF` keyword, used to begin an if statement.
         case keywordIf
 
@@ -143,7 +149,7 @@ extension Token {
                 return [.operator]
             case .equals, .lessThan, .greaterThan, .lessOrEqual, .greaterOrEqual, .notEqual:
                 return [.operator, .relationalOperator]
-            case .keywordPrint, .keywordLet, .keywordGoto, .keywordIf, .keywordThen, .keywordRem, .keywordClear, .keywordEnd:
+            case .keywordPrint, .keywordLet, .keywordGoto, .keywordGoSub, .keywordReturn, .keywordIf, .keywordThen, .keywordRem, .keywordClear, .keywordEnd:
                 return [.keyword]
             case .integer(_):
                 return [.number]

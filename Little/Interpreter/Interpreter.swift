@@ -111,6 +111,10 @@ public class Interpreter {
             try executeAssignment(variable: variable, value: value)
         case .goto(let line):
             try executeGoto(line: line)
+        case .goSub(let line):
+            try executeGoSub(line: line)
+        case .return:
+            try executeReturn()
         case .if(let token, let left, let right, let statement):
             return try executeIf(token: token, left: left, right: right, statement: statement)
         case .clear:
@@ -225,6 +229,15 @@ public class Interpreter {
         // need to decrement by one to account for the increment after this statement is executed
         // if this isnt done then the line that is gotod is not executed, only the lines after it
         currentOffset = offset - 1
+    }
+
+    private func executeGoSub(line: Expression) throws {
+        let number = try evaluate(expression: line)
+        print("GOSUB", number)
+    }
+
+    private func executeReturn() {
+        print("RETURN")
     }
 
     /// - Returns: Whether or not the given statement terminated the program.
