@@ -27,3 +27,5 @@ The differences are as follows:
 * The `PRINT` statement uses different separators.
    * The `,` separator produces a single space, and the `;` separator produces nothing.
    * For example, `PRINT "A", "B", "C"; "."` produces `A B C.`
+* Some statements are omitted.
+   * The `INPUT`, `RUN`, and `LIST` statements are all removed as these only function in a command line environment, which Little BASIC is not intended for.
