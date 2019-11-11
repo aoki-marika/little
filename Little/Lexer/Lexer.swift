@@ -33,6 +33,7 @@ public class Lexer {
         "PR": .keywordPrint,
         "LET": .keywordLet,
         "GOTO": .keywordGoto,
+        "REM": .keywordRem,
     ]
 
     /// The source code for this lexer to analyze.
@@ -42,6 +43,9 @@ public class Lexer {
     ///
     /// If this is nil then that means there is no more source code to analyze, and analysis should be terminated with an end of file token.
     private var currentPosition: String.Index?
+
+    /// The last token that was analyzed in this lexer, if any.
+    private var lastToken: Token?
 
     /// Get the position of the next character this lexer will read in it's input, if any.
     ///
@@ -89,6 +93,7 @@ public class Lexer {
     /// This is used only if the source should be reanalyzed.
     public func reset() {
         currentPosition = input.startIndex
+        lastToken = nil
     }
 
     /// Analyze and return the next token in this lexer's source.
@@ -102,6 +107,14 @@ public class Lexer {
         // if there is none then the input has been completely analyzed
         guard let startIndex = currentPosition, let currentCharacter = currentCharacter else {
             let token = createToken(kind: .endOfFile, startIndex: input.endIndex)
+            lastToken = token
+            return token
+        }
+
+        // if the last token was a rem keyword then attempt to read the comment
+        if let remToken = lastToken, remToken.kind == .keywordRem {
+            let token = readComment()
+            lastToken = token
             return token
         }
 
@@ -115,16 +128,19 @@ public class Lexer {
 
                 // return the token
                 let token = createToken(kind: kind, startIndex: startIndex)
+                lastToken = token
                 return token
             }
             // number literals
             else if currentCharacter.isDigit {
                 let token = try readNumber()
+                lastToken = token
                 return token
             }
             // string literals
             else if currentCharacter == "\"" {
                 let token = try readString()
+                lastToken = token
                 return token
             }
             // end of line
@@ -134,12 +150,14 @@ public class Lexer {
 
                 // return the token
                 let token = createToken(kind: .endOfLine, startIndex: startIndex)
+                lastToken = token
                 return token
             }
             else {
                 // try an identifier as a last resort
                 if currentCharacter.isValidIdentifier {
                     let token = try readIdentifier()
+                    lastToken = token
                     return token
                 }
 
@@ -326,5 +344,26 @@ public class Lexer {
 
             return createToken(kind: kind, startIndex: startIndex)
         }
+    }
+
+    /// Read the comment token at the current position of this lexer.
+    /// - Note: This method expects that the check for a precedeing `REM` token has already been done, and reads a comment until the next newline or EOF.
+    /// - Returns: The new comment token.
+    private func readComment() -> Token {
+        // get the start index of the comment
+        // this should never happen, but just in case
+        guard let startIndex = currentPosition else {
+            fatalError("attempted to read comment with no start index")
+        }
+
+        // read all the text of the comment
+        var literal = ""
+        while let currentCharacter = currentCharacter, !currentCharacter.isNewline {
+            literal.append(currentCharacter)
+            readCharacter()
+        }
+
+        // return the new token
+        return createToken(kind: .comment(literal: literal), startIndex: startIndex)
     }
 }

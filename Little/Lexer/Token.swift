@@ -70,6 +70,9 @@ extension Token {
         /// The `GOTO` keyword, used for changing the sequence in which the program executes.
         case keywordGoto
 
+        /// The `REM` keyword, used for inserting comments into a program's source.
+        case keywordRem
+
         // MARK: Values
 
         /// An integer literal.
@@ -85,6 +88,12 @@ extension Token {
         case variable(name: String)
 
         // MARK: Special
+
+        /// A comment literal from a `REM` statement.
+        ///
+        /// This should only be used for syntax highlighting, and never interpreting.
+        /// - Parameter literal: The literal contents of this comment.
+        case comment(literal: String)
 
         /// The end of line marker.
         ///
@@ -105,7 +114,7 @@ extension Token {
             switch self {
             case .plus, .minus, .asterisk, .slash:
                 return [.operator]
-            case .keywordPrint, .keywordLet, .keywordGoto:
+            case .keywordPrint, .keywordLet, .keywordGoto, .keywordRem:
                 return [.keyword]
             case .integer(_):
                 return [.number]
@@ -113,6 +122,8 @@ extension Token {
                 return [.string]
             case .variable(_):
                 return [.variable]
+            case .comment(_):
+                return [.comment]
             default:
                 return []
             }
@@ -144,5 +155,8 @@ extension Token.Kind {
 
         /// A named variable reference.
         case variable
+
+        /// A comment literal.
+        case comment
     }
 }

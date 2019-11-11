@@ -13,7 +13,7 @@ enum Statement: Equatable {
 
     // MARK: Cases
 
-    /// A statement which does nothing, used for empty lines.
+    /// A statement which does nothing, used for empty lines and comments.
     case none
 
     /// Prints the given items to the interpreter's output.
