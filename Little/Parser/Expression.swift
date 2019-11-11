@@ -9,7 +9,9 @@
 import Foundation
 
 /// The data structure for an expression that can be evaluated.
-struct Expression: Equatable {
+/// - Note: Although this conforms to `Equatable`, only `root` is compared.
+/// This, although it feels cheap, is to allow equality comparisons in unit tests where ranges cannot be obtained, and a wrapper type can't be created.
+struct Expression {
 
     // MARK: Public Properties
 
@@ -17,7 +19,26 @@ struct Expression: Equatable {
     let root: Node
 
     /// The range of this expression in the original source.
-    let range: Range<String.Index>
+    ///
+    /// Although this is a force unwrapped optional, it should never be nil outside of unit tests.
+    let range: Range<String.Index>!
+
+    // MARK: Initializers
+
+    /// - Parameter root: The root node of this expression.
+    /// - Parameter range: The range of this expression in the original source.
+    init(root: Node, range: Range<String.Index>? = nil) {
+        self.root = root
+        self.range = range
+    }
+}
+
+// MARK: Equatable
+
+extension Expression: Equatable {
+    static func ==(lhs: Expression, rhs: Expression) -> Bool {
+        return lhs.root == rhs.root
+    }
 }
 
 // MARK: Node

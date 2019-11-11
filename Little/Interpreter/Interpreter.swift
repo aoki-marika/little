@@ -130,7 +130,7 @@ public class Interpreter {
                 throw error
             }
 
-            let range = expression.range
+            let range = expression.range!
             throw RuntimeError(range: range, wrapped: error)
         }
     }
