@@ -229,6 +229,70 @@ class ParserTests: XCTestCase {
         )
     }
 
+    func testComments() {
+        // test different comments
+        assertLines(
+            from: """
+            REM Comment one.
+            REM Comment two.
+            10 REM Comment three.
+            """,
+            equals: [
+                ExpectedLine(
+                    number: nil,
+                    statement: .none,
+                    literal: "REM Comment one."
+                ),
+                ExpectedLine(
+                    number: nil,
+                    statement: .none,
+                    literal: "REM Comment two."
+                ),
+                ExpectedLine(
+                    number: 10,
+                    statement: .none,
+                    literal: "10 REM Comment three."
+                ),
+            ]
+        )
+    }
+
+    func testSequence() {
+        // test sequence related keywords
+        assertLines(
+            from: """
+            PR "Start."
+            CLEAR
+            10 END
+            GOTO 10
+            """,
+            equals: [
+                ExpectedLine(
+                    number: nil,
+                    statement: .print(items: [
+                        PrintItem(kind: .string(string: "Start."), terminator: ""),
+                    ]),
+                    literal: "PR \"Start.\""
+                ),
+                ExpectedLine(
+                    number: nil,
+                    statement: .clear,
+                    literal: "CLEAR"
+                ),
+                ExpectedLine(
+                    number: 10,
+                    statement: .end,
+                    literal: "10 END"
+                ),
+                ExpectedLine(
+                    number: nil,
+                    statement: .goto(line: Expression(root: .integer(value: 10))),
+                    literal: "GOTO 10"
+                ),
+            ]
+        )
+    }
+
     // MARK: Private Methods
 
     /// Assert that the lines parsed from the given input match the given lines.
