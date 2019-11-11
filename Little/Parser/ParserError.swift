@@ -11,6 +11,10 @@ import Foundation
 /// The different errors that can occur when a parser is parsing.
 enum ParserError: Error {
 
+    /// The parser found a line number but it was invalid, such as being less than or equal to zero.
+    /// - Parameter number: The invalid line number that was found.
+    case invalidLineNumber(number: Int)
+
     /// The parser expected one token kind, but found another.
     /// - Parameter expected: The token kind that was expected.
     /// - Parameter got: The token kind that was found.

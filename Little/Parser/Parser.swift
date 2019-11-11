@@ -81,6 +81,10 @@ class Parser {
         let lineNumber: Int?
         switch currentToken.kind {
         case .integer(let value):
+            guard value > 0 else {
+                throw ParserError.invalidLineNumber(number: value)
+            }
+
             lineNumber = value
             try eat(kind: currentToken.kind)
         default:
