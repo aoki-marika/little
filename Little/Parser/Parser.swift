@@ -139,7 +139,6 @@ class Parser {
     /// ```
     /// statement ::= PRINT printlist
     ///               PR printlist
-    ///               INPUT varlist
     ///               LET var = expression
     ///               var = expression
     ///               GOTO expression
@@ -149,10 +148,6 @@ class Parser {
     ///               IF expression relop expression statement
     ///               REM commentstring
     ///               CLEAR
-    ///               RUN
-    ///               RUN exprlist
-    ///               LIST
-    ///               LIST exprlist
     /// ```
     private func statement() throws -> Statement {
         switch currentToken.kind {
