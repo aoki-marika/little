@@ -89,6 +89,10 @@ class Parser {
     ///          statement CR
     /// ```
     private func line() throws -> Line {
+        // store the start index for the range of the line
+        let startIndex = currentToken.range.lowerBound
+
+        // read the line number
         let lineNumber: Int?
         switch currentToken.kind {
         case .integer(let value):
@@ -101,17 +105,24 @@ class Parser {
         default:
             // if there is no line number then this could be a blank line
             // only lines without numbers can be blank, if there is a line number then there must be a statement
-            if currentToken.kind == .endOfLine || currentToken.kind == .endOfLine {
+            if currentToken.kind == .endOfLine || currentToken.kind == .endOfFile {
                 try eat(kind: currentToken.kind)
-                let line = Line(number: nil, statement: .none)
+
+                let endIndex = currentToken.range.lowerBound
+                let range = startIndex..<endIndex
+                let line = Line(range: range, number: nil, statement: .none)
                 return line
             }
 
             lineNumber = nil
         }
 
+        // read the statement
         let lineStatement = try statement()
 
+        // consume the line or file end
+        // get the end index here so the line range doesnt include the end
+        let endIndex = currentToken.range.lowerBound
         switch currentToken.kind {
         case .endOfLine, .endOfFile:
             try eat(kind: currentToken.kind)
@@ -119,7 +130,9 @@ class Parser {
             throw ParserError.expectedLineEnd(kind: currentToken.kind)
         }
 
-        let line = Line(number: lineNumber, statement: lineStatement)
+        // return the new line
+        let range = startIndex..<endIndex
+        let line = Line(range: range, number: lineNumber, statement: lineStatement)
         return line
     }
 

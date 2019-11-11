@@ -13,6 +13,9 @@ struct Line: Equatable {
 
     // MARK: Public Properties
 
+    /// The range of this line in the original source.
+    let range: Range<String.Index>
+
     /// The program defined number of this line, if any.
     ///
     /// If a line with this number has already been declared then the new line takes precedence and overwrites the previous.
