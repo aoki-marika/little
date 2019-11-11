@@ -76,6 +76,9 @@ extension Token {
         /// The `CLEAR` keyword, used to clear the interpreter's output.
         case keywordClear
 
+        /// The `END` keyword, used to terminate a program before completion.
+        case keywordEnd
+
         // MARK: Values
 
         /// An integer literal.
@@ -117,7 +120,7 @@ extension Token {
             switch self {
             case .plus, .minus, .asterisk, .slash:
                 return [.operator]
-            case .keywordPrint, .keywordLet, .keywordGoto, .keywordRem, .keywordClear:
+            case .keywordPrint, .keywordLet, .keywordGoto, .keywordRem, .keywordClear, .keywordEnd:
                 return [.keyword]
             case .integer(_):
                 return [.number]

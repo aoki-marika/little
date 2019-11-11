@@ -32,4 +32,7 @@ enum Statement: Equatable {
 
     /// Clear the interpreter's output.
     case clear
+
+    /// Terminate the program.
+    case end
 }

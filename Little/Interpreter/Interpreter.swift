@@ -68,7 +68,10 @@ public class Interpreter {
         }
 
         let line = lines[currentOffset]
-        try execute(line: line, offset: currentOffset)
+        if try execute(line: line, offset: currentOffset) {
+            return true
+        }
+
         currentOffset += 1
         return false
     }
@@ -78,7 +81,8 @@ public class Interpreter {
     /// Execute the given line in this interpreter.
     /// - Parameter line: The line to execute.
     /// - Parameter offset: The offset of the given line in this interpreter's lines.
-    private func execute(line: Line, offset: Int) throws {
+    /// - Returns: Whether or not the given line terminated the program.
+    private func execute(line: Line, offset: Int) throws -> Bool {
         // assign the line number if one was given
         if let number = line.number {
             lineNumberOffsets[number] = offset
@@ -96,7 +100,11 @@ public class Interpreter {
             try executeGoto(line: line)
         case .clear:
             executeClear()
+        case .end:
+            return true
         }
+
+        return false
     }
 
     /// Calls `evaluate(node:)` with `expression.root`.

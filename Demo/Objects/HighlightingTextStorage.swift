@@ -163,11 +163,9 @@ class HighlightingTextStorage: NSTextStorage {
                 }
             }
             catch let error as SourceError {
+                // the error will be displayed when the user attempts to run the program
                 let range = getRange(of: error.range)
                 setAttributes(errorAttributes, range: range)
-
-                #warning("TOOD: Proper error display.")
-                print(error.wrapped)
             }
             catch {
                 fatalError("error analyzing input '\(input)': \(error)")

@@ -158,6 +158,9 @@ class Parser {
         case .keywordClear:
             try eat(kind: .keywordClear)
             return .clear
+        case .keywordEnd:
+            try eat(kind: .keywordEnd)
+            return .end
         default:
             return try assignment()
         }
