@@ -71,7 +71,11 @@ class HighlightingTextStorage: NSTextStorage {
             .variable: [
                 .font: regularFont,
                 .foregroundColor: UIColor(named: "EditorVariable")!,
-            ]
+            ],
+            .comment: [
+                .font: regularFont,
+                .foregroundColor: UIColor(named: "EditorComment")!,
+            ],
         ]
     }
 
