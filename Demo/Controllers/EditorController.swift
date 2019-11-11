@@ -103,28 +103,30 @@ class EditorController: UIViewController {
         input = input.replacingOccurrences(of: "\\n", with: "\n")
 
         // step the program until completion
+        // run in a background thread so recursion doesnt freeze the interface
         let interpreter = Interpreter(input: input, output: consoleController)
+        DispatchQueue.global(qos: .background).async {
+            do {
+                try interpreter.start()
+                while true {
+                    let isComplete = try interpreter.step()
 
-        do {
-            try interpreter.start()
-            while true {
-                let isComplete = try interpreter.step()
-
-                if isComplete {
-                    break
+                    if isComplete {
+                        break
+                    }
                 }
             }
-        }
-        catch let error as SourceError {
-            // print the error to the console
-            #warning("TODO: Proper error handling.")
-            let range = error.range
-            let substring = input[range]
-            consoleController.receive(string: "'\(substring)': \(error.wrapped)\n")
-        }
-        catch {
-            #warning("TODO: Doesn't catch interpreter errors, need a RuntimeError wrapper type with line ranges.")
-            fatalError("unable to interpret program '\(input)': \(error)")
+            catch let error as SourceError {
+                // print the error to the console
+                #warning("TODO: Proper error handling.")
+                let range = error.range
+                let substring = input[range]
+                self.consoleController.receive(string: "'\(substring)': \(error.wrapped)\n")
+            }
+            catch {
+                #warning("TODO: Doesn't catch interpreter errors, need a RuntimeError wrapper type with line ranges.")
+                self.consoleController.receive(string: "program error: \(error)\n")
+            }
         }
     }
 }

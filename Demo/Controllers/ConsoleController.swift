@@ -36,7 +36,11 @@ class ConsoleController: UIViewController {
 // MARK: Output
 
 extension ConsoleController: Output {
+
     func receive(string: String) {
-        textView.text += string
+        // ensure this is called on the main thread
+        DispatchQueue.main.async {
+            self.textView.text += string
+        }
     }
 }
