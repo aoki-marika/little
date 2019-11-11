@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EC0464A423759ABE00E3F965 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0464A323759ABE00E3F965 /* Line.swift */; };
+		EC109AC32379B18B002E0AEE /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC109AC22379B18B002E0AEE /* RuntimeError.swift */; };
 		EC1D4AC82374A7610027FFA2 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1D4AC72374A7610027FFA2 /* Expression.swift */; };
 		EC20A1AA2376F5A100B86856 /* PrintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1A92376F5A100B86856 /* PrintItem.swift */; };
 		EC20A1AC2376FE1200B86856 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1AB2376FE1200B86856 /* Statement.swift */; };
@@ -72,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		EC0464A323759ABE00E3F965 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		EC109AC22379B18B002E0AEE /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
 		EC1D4AC72374A7610027FFA2 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
 		EC20A1A92376F5A100B86856 /* PrintItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintItem.swift; sourceTree = "<group>"; };
 		EC20A1AB2376FE1200B86856 /* Statement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				EC76BB1C23745A9800F1034F /* SourceError.swift */,
+				EC109AC22379B18B002E0AEE /* RuntimeError.swift */,
 				ECA21466237453F1002D25CA /* Lexer */,
 				EC76BB1E237473BD00F1034F /* Parser */,
 				EC20A1AD2377045000B86856 /* Interpreter */,
@@ -442,6 +445,7 @@
 				EC76BB2723748A7500F1034F /* Character.swift in Sources */,
 				EC1D4AC82374A7610027FFA2 /* Expression.swift in Sources */,
 				EC0464A423759ABE00E3F965 /* Line.swift in Sources */,
+				EC109AC32379B18B002E0AEE /* RuntimeError.swift in Sources */,
 				ECA2146A23745405002D25CA /* Token.swift in Sources */,
 				EC20A1AA2376F5A100B86856 /* PrintItem.swift in Sources */,
 				EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */,

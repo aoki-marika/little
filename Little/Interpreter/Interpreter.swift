@@ -68,8 +68,15 @@ public class Interpreter {
         }
 
         let line = lines[currentOffset]
-        if try execute(line: line, offset: currentOffset) {
-            return true
+
+        do {
+            if try execute(line: line, offset: currentOffset) {
+                return true
+            }
+        }
+        catch {
+            let range = line.range
+            throw RuntimeError(range: range, wrapped: error)
         }
 
         currentOffset += 1

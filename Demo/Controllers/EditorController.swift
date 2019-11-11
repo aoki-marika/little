@@ -113,6 +113,8 @@ class EditorController: UIViewController {
         // run in a background thread so recursion doesnt freeze the interface
         let interpreter = Interpreter(input: input, output: consoleController)
         DispatchQueue.global(qos: .background).async {
+            #warning("TODO: Display errors with line and column.")
+
             do {
                 try interpreter.start()
                 while true {
@@ -125,7 +127,12 @@ class EditorController: UIViewController {
             }
             catch let error as SourceError {
                 // print the error to the console
-                #warning("TODO: Proper error handling.")
+                let range = error.range
+                let substring = input[range]
+                self.consoleController.receive(string: "'\(substring)': \(error.wrapped)\n")
+            }
+            catch let error as RuntimeError {
+                // print the error to the console
                 let range = error.range
                 let substring = input[range]
                 self.consoleController.receive(string: "'\(substring)': \(error.wrapped)\n")
