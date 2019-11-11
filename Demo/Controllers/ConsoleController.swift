@@ -43,4 +43,10 @@ extension ConsoleController: Output {
             self.textView.text += string
         }
     }
+
+    func clear() {
+        DispatchQueue.main.async {
+            self.clear(self)
+        }
+    }
 }

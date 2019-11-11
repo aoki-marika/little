@@ -94,6 +94,8 @@ public class Interpreter {
             try executeAssignment(variable: variable, value: value)
         case .goto(let line):
             try executeGoto(line: line)
+        case .clear:
+            executeClear()
         }
     }
 
@@ -189,5 +191,9 @@ public class Interpreter {
         // need to decrement by one to account for the increment after this statement is executed
         // if this isnt done then the line that is gotod is not executed, only the lines after it
         currentOffset = offset - 1
+    }
+
+    private func executeClear() {
+        output.clear()
     }
 }

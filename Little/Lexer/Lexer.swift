@@ -34,6 +34,7 @@ public class Lexer {
         "LET": .keywordLet,
         "GOTO": .keywordGoto,
         "REM": .keywordRem,
+        "CLEAR": .keywordClear,
     ]
 
     /// The source code for this lexer to analyze.

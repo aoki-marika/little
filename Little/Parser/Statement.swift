@@ -29,4 +29,7 @@ enum Statement: Equatable {
     /// Change the sequence in which the program executes by moving to the line of the given number.
     /// - Parameter line: The expression to evaluate to get the line number to go to.
     case goto(line: Expression)
+
+    /// Clear the interpreter's output.
+    case clear
 }

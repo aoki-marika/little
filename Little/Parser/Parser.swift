@@ -155,6 +155,9 @@ class Parser {
             try eat(kind: .keywordRem)
             try eat(category: .comment)
             return .none
+        case .keywordClear:
+            try eat(kind: .keywordClear)
+            return .clear
         default:
             return try assignment()
         }

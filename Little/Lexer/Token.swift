@@ -73,6 +73,9 @@ extension Token {
         /// The `REM` keyword, used for inserting comments into a program's source.
         case keywordRem
 
+        /// The `CLEAR` keyword, used to clear the interpreter's output.
+        case keywordClear
+
         // MARK: Values
 
         /// An integer literal.
@@ -114,7 +117,7 @@ extension Token {
             switch self {
             case .plus, .minus, .asterisk, .slash:
                 return [.operator]
-            case .keywordPrint, .keywordLet, .keywordGoto, .keywordRem:
+            case .keywordPrint, .keywordLet, .keywordGoto, .keywordRem, .keywordClear:
                 return [.keyword]
             case .integer(_):
                 return [.number]

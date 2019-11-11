@@ -13,7 +13,10 @@ public protocol Output {
 
     // MARK: Public Methods
 
-    /// Receive and the given output text from an interpreter.
+    /// Receive and display the given output text from an interpreter.
     /// - Parameter string: The text that was output.
     func receive(string: String)
+
+    /// Clear all the currently displayed text in this output.
+    func clear()
 }
