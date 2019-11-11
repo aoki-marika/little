@@ -271,7 +271,7 @@ class LexerTests: XCTestCase {
             equals: [
                 ExpectedToken(kind: .integer(value: 10),  literal: "10"),
                 ExpectedToken(kind: .variable(name: "A"), literal: "A"),
-                ExpectedToken(kind: .assignment,          literal: "="),
+                ExpectedToken(kind: .equals,              literal: "="),
                 ExpectedToken(kind: .integer(value: 5),   literal: "5"),
                 ExpectedToken(kind: .slash,               literal: "/"),
                 ExpectedToken(kind: .integer(value: 2),   literal: "2"),
@@ -279,14 +279,14 @@ class LexerTests: XCTestCase {
 
                 ExpectedToken(kind: .integer(value: 20),  literal: "20"),
                 ExpectedToken(kind: .variable(name: "B"), literal: "B"),
-                ExpectedToken(kind: .assignment,          literal: "="),
+                ExpectedToken(kind: .equals,              literal: "="),
                 ExpectedToken(kind: .variable(name: "A"), literal: "A"),
                 ExpectedToken(kind: .asterisk,            literal: "*"),
                 ExpectedToken(kind: .integer(value: 3),   literal: "3"),
                 ExpectedToken(kind: .endOfLine,           literal: "\n"),
 
                 ExpectedToken(kind: .variable(name: "C"), literal: "C"),
-                ExpectedToken(kind: .assignment,          literal: "="),
+                ExpectedToken(kind: .equals,              literal: "="),
                 ExpectedToken(kind: .variable(name: "B"), literal: "B"),
                 ExpectedToken(kind: .slash,               literal: "/"),
                 ExpectedToken(kind: .variable(name: "A"), literal: "A"),
@@ -295,7 +295,7 @@ class LexerTests: XCTestCase {
                 ExpectedToken(kind: .endOfLine,           literal: "\n"),
 
                 ExpectedToken(kind: .variable(name: "Z"), literal: "Z"),
-                ExpectedToken(kind: .assignment,          literal: "="),
+                ExpectedToken(kind: .equals,              literal: "="),
                 ExpectedToken(kind: .leftParentheses,     literal: "("),
                     ExpectedToken(kind: .variable(name: "C"), literal: "C"),
                     ExpectedToken(kind: .minus,               literal: "-"),

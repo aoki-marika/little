@@ -19,7 +19,7 @@ public class Lexer {
         "-": .minus,
         "*": .asterisk,
         "/": .slash,
-        "=": .assignment,
+        "=": .equals,
         "(": .leftParentheses,
         ")": .rightParentheses,
         ",": .comma,

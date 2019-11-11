@@ -41,7 +41,7 @@ extension Token {
         case slash
 
         /// The binary `=` operator.
-        case assignment
+        case equals
 
         // MARK: Punctuators
 

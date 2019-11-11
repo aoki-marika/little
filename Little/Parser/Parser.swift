@@ -202,7 +202,7 @@ class Parser {
         }
 
         let name = try variable()
-        try eat(kind: .assignment)
+        try eat(kind: .equals)
         let value = try expression()
 
         return .assignment(variable: name, value: value)
