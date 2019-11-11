@@ -85,6 +85,12 @@ extension Token {
         /// The `GOTO` keyword, used for changing the sequence in which the program executes.
         case keywordGoto
 
+        /// The `IF` keyword, used to begin an if statement.
+        case keywordIf
+
+        /// The `THEN` keyword, optionally used at the end of an if statement.
+        case keywordThen
+
         /// The `REM` keyword, used for inserting comments into a program's source.
         case keywordRem
 
