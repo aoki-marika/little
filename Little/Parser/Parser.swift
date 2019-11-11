@@ -164,6 +164,24 @@ class Parser {
         case .keywordGoto:
             try eat(kind: .keywordGoto)
             return .goto(line: try expression())
+        case .keywordIf:
+            try eat(kind: .keywordIf)
+            let left = try expression()
+            let token = currentToken.kind
+            try eat(category: .relationalOperator)
+            let right = try expression()
+
+            // eat the optional then keyword
+            if currentToken.kind == .keywordThen {
+                try eat(kind: .keywordThen)
+            }
+
+            return .if(
+                token: token,
+                left: left,
+                right: right,
+                statement: try statement()
+            )
         case .keywordRem:
             try eat(kind: .keywordRem)
             try eat(category: .comment)

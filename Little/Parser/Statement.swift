@@ -9,7 +9,7 @@
 import Foundation
 
 /// The different statements that a line can perform.
-enum Statement: Equatable {
+indirect enum Statement: Equatable {
 
     // MARK: Cases
 
@@ -29,6 +29,13 @@ enum Statement: Equatable {
     /// Change the sequence in which the program executes by moving to the line of the given number.
     /// - Parameter line: The expression to evaluate to get the line number to go to.
     case goto(line: Expression)
+
+    /// If the given left and right operands compare true using the given relational operator, then execute the given statement.
+    /// - Parameter token: The token kind to infer the operation from. Must belong to the relational operations category.
+    /// - Parameter left: The left operand.
+    /// - Parameter right: The right operand.
+    /// - Parameter statement: The statement to execute if the operands compare true.
+    case `if`(token: Token.Kind, left: Expression, right: Expression, statement: Statement)
 
     /// Clear the interpreter's output.
     case clear

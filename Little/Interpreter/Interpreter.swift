@@ -101,7 +101,13 @@ public class Interpreter {
         }
 
         // execute the lines statement
-        switch line.statement {
+        return try execute(statement: line.statement)
+    }
+
+    /// Execute the given statement in this interpreter.
+    /// - Returns: Whether or not the given statement terminated the program.
+    private func execute(statement: Statement) throws -> Bool {
+        switch statement {
         case .none:
             break
         case .print(let items):
@@ -110,6 +116,8 @@ public class Interpreter {
             try executeAssignment(variable: variable, value: value)
         case .goto(let line):
             try executeGoto(line: line)
+        case .if(let token, let left, let right, let statement):
+            return try executeIf(token: token, left: left, right: right, statement: statement)
         case .clear:
             executeClear()
         case .end:
@@ -222,6 +230,36 @@ public class Interpreter {
         // need to decrement by one to account for the increment after this statement is executed
         // if this isnt done then the line that is gotod is not executed, only the lines after it
         currentOffset = offset - 1
+    }
+
+    /// - Returns: Whether or not the given statement terminated the program.
+    private func executeIf(token: Token.Kind, left: Expression, right: Expression, statement: Statement) throws -> Bool {
+        let leftValue = try evaluate(expression: left)
+        let rightValue = try evaluate(expression: right)
+
+        let matched: Bool
+        switch token {
+        case .equals:
+            matched = leftValue == rightValue
+        case .lessThan:
+            matched = leftValue < rightValue
+        case .greaterThan:
+            matched = leftValue > rightValue
+        case .lessOrEqual:
+            matched = leftValue <= rightValue
+        case .greaterOrEqual:
+            matched = leftValue >= rightValue
+        case .notEqual:
+            matched = leftValue != rightValue
+        default:
+            fatalError("invalid relational operator: \(token)")
+        }
+
+        if matched {
+            return try execute(statement: statement)
+        }
+
+        return false
     }
 
     private func executeClear() {
