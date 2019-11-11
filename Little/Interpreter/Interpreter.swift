@@ -130,6 +130,10 @@ public class Interpreter {
             case .minus:
                 return left - right
             case .slash:
+                guard right != 0 else {
+                    throw InterpreterError.divisionByZero
+                }
+
                 return left / right
             case .asterisk:
                 return left * right
