@@ -15,6 +15,9 @@ struct Expression: Equatable {
 
     /// The root node of this expression.
     let root: Node
+
+    /// The range of this expression in the original source.
+    let range: Range<String.Index>
 }
 
 // MARK: Node

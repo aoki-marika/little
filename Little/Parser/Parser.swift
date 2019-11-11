@@ -110,7 +110,7 @@ class Parser {
 
                 let endIndex = currentToken.range.lowerBound
                 let range = startIndex..<endIndex
-                let line = Line(range: range, number: nil, statement: .none)
+                let line = Line(number: nil, statement: .none, range: range)
                 return line
             }
 
@@ -132,7 +132,7 @@ class Parser {
 
         // return the new line
         let range = startIndex..<endIndex
-        let line = Line(range: range, number: lineNumber, statement: lineStatement)
+        let line = Line(number: lineNumber, statement: lineStatement, range: range)
         return line
     }
 
@@ -255,6 +255,7 @@ class Parser {
     ///                - unsignedexpr
     /// ```
     private func expression() throws -> Expression {
+        let startIndex = currentToken.range.lowerBound
         let kind = currentToken.kind
         let root: Expression.Node
 
@@ -269,7 +270,9 @@ class Parser {
             root = try unsignedexpr()
         }
 
-        return Expression(root: root)
+        let endIndex = currentToken.range.lowerBound
+        let range = startIndex..<endIndex
+        return Expression(root: root, range: range)
     }
 
     /// ```

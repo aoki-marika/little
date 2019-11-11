@@ -67,14 +67,19 @@ public class Interpreter {
             return true
         }
 
+        // execute the next line and wrap any errors it produces in a runtime error
         let line = lines[currentOffset]
-
         do {
             if try execute(line: line, offset: currentOffset) {
                 return true
             }
         }
         catch {
+            // dont rewrap existing runtime errors
+            guard !(error is RuntimeError) else {
+                throw error
+            }
+
             let range = line.range
             throw RuntimeError(range: range, wrapped: error)
         }
@@ -114,9 +119,20 @@ public class Interpreter {
         return false
     }
 
-    /// Calls `evaluate(node:)` with `expression.root`.
+    /// Calls `evaluate(node:)` with `expression.root`, wrapping any errors in a runtime error with the given expression's range.
     private func evaluate(expression: Expression) throws -> Int {
-        return try evaluate(node: expression.root)
+        do {
+            return try evaluate(node: expression.root)
+        }
+        catch {
+            // dont rewrap sub-expressions
+            guard !(error is RuntimeError) else {
+                throw error
+            }
+
+            let range = expression.range
+            throw RuntimeError(range: range, wrapped: error)
+        }
     }
 
     /// Evaluate the given expression node and return it's result.
