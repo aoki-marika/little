@@ -14,6 +14,7 @@ public class Lexer {
     // MARK: Private Properties
 
     /// The mapping of single characters to token kinds when analyzing source code characters.
+    /// - Note: `doubleCharacterMapping` takes precedence over these.
     private let singleCharacterMapping: [Character : Token.Kind] = [
         "+": .plus,
         "-": .minus,
@@ -24,6 +25,10 @@ public class Lexer {
         ")": .rightParentheses,
         ",": .comma,
         ";": .semicolon,
+    ]
+
+    /// The mapping of double character strings to token kinds when analyzing source code.
+    private let doubleCharacterMapping: [String : Token.Kind] = [
     ]
 
     /// The mapping of multiple character identifiers to keyword token kinds when analyzing source code.
@@ -78,6 +83,15 @@ public class Lexer {
         return input[currentPosition]
     }
 
+    /// Get the next character that this lexer will analyze, if any.
+    private var nextCharacter: Character? {
+        guard let readingPosition = readingPosition else {
+            return nil
+        }
+
+        return input[readingPosition]
+    }
+
     // MARK: Initializers
 
     /// - Parameter input: The source code for this lexer to analyze.
@@ -125,6 +139,12 @@ public class Lexer {
         do {
             // single character mapping
             if let kind = singleCharacterMapping[currentCharacter] {
+                // ensure this is not actually a double character token
+                if let token = readDoubleCharacter() {
+                    lastToken = token
+                    return token
+                }
+
                 // consume the character
                 readCharacter()
 
@@ -156,8 +176,13 @@ public class Lexer {
                 return token
             }
             else {
+                // try to read a double character token
+                if let token = readDoubleCharacter() {
+                    lastToken = token
+                    return token
+                }
                 // try an identifier as a last resort
-                if currentCharacter.isValidIdentifier {
+                else if currentCharacter.isValidIdentifier {
                     let token = try readIdentifier()
                     lastToken = token
                     return token
@@ -238,13 +263,35 @@ public class Lexer {
         return token
     }
 
+    /// Read the double character token at the current position of this lexer, if any.
+    /// - Returns: The double character token at the current position of this lexer, if any.
+    private func readDoubleCharacter() -> Token? {
+        guard let startIndex = currentPosition else {
+            fatalError("attempted to read number literal with no start index")
+        }
+
+        // ensure there are two characters to read
+        guard let currentCharacter = currentCharacter, let nextCharacter = nextCharacter else {
+            return nil
+        }
+
+        // check if the literal has a mapping
+        let literal = String([currentCharacter, nextCharacter])
+        guard let kind = doubleCharacterMapping[literal] else {
+            return nil
+        }
+
+        // consume the characters and return the new token
+        readCharacter()
+        readCharacter()
+        return createToken(kind: kind, startIndex: startIndex)
+    }
+
     /// Read the number token from the current position of this lexer.
     ///
     /// This can read both integer or floating point, and uses the respective kind for each.
     /// - Returns: The new number token.
     private func readNumber() throws -> Token {
-        // get the start index of the literal
-        // this should never happen, but just in case
         guard let startIndex = currentPosition else {
             fatalError("attempted to read number literal with no start index")
         }
@@ -273,8 +320,6 @@ public class Lexer {
     /// Read the string token from the current position of this lexer.
     /// - Returns: The new string token.
     private func readString() throws -> Token {
-        // get the start index of the string
-        // this should never happen, but just in case
         guard let startIndex = currentPosition else {
             fatalError("attempted to read string literal with no start index")
         }
@@ -311,8 +356,6 @@ public class Lexer {
     /// Read the identifier token from the current position of this lexer.
     /// - Returns: The new identifier token.
     private func readIdentifier() throws -> Token {
-        // get the start index of the identifier
-        // this should never happen, but just in case
         guard let startIndex = currentPosition else {
             fatalError("attempted to read identifier with no start index")
         }
@@ -352,8 +395,6 @@ public class Lexer {
     /// - Note: This method expects that the check for a precedeing `REM` token has already been done, and reads a comment until the next newline or EOF.
     /// - Returns: The new comment token.
     private func readComment() -> Token {
-        // get the start index of the comment
-        // this should never happen, but just in case
         guard let startIndex = currentPosition else {
             fatalError("attempted to read comment with no start index")
         }
