@@ -78,6 +78,13 @@ class EditorController: UIViewController {
         PR "You can even combine them to get more complex outputs, but I'll just print hello world again."
         PR
 
+        REM This is a comment.
+        REM You can use the REM keyword followed by any text to create a comment.
+        REM Comments extend from the REM keyword to the end of the line.
+        REM These do nothing when the program is run, but allow documentation within the source.
+        10 REM You can even number REM lines and GOTO them if you really want.
+        20 REM Note that you cannot place these at the end of an existing line, they must be on their own line.
+
         LET A = 10
         B = 20
         PR "A =", A; ",", "B =", B
