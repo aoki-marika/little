@@ -316,6 +316,55 @@ class LexerTests: XCTestCase {
         )
     }
 
+    func testRelationalOperators() {
+        // test relational operators to test double character tokens
+        assertTokens(
+            from: """
+            IF 10 < 20 IF 20 > 30
+            IF 40 >= 40 THEN
+            IF 50 <= 60 THEN
+            IF 1 >< 2 THEN IF 2 <> 1 THEN
+            """,
+            equals: [
+                ExpectedToken(kind: .keywordIf,          literal: "IF"),
+                ExpectedToken(kind: .integer(value: 10), literal: "10"),
+                ExpectedToken(kind: .lessThan,           literal: "<"),
+                ExpectedToken(kind: .integer(value: 20), literal: "20"),
+                ExpectedToken(kind: .keywordIf,          literal: "IF"),
+                ExpectedToken(kind: .integer(value: 20), literal: "20"),
+                ExpectedToken(kind: .greaterThan,        literal: ">"),
+                ExpectedToken(kind: .integer(value: 30), literal: "30"),
+                ExpectedToken(kind: .endOfLine,          literal: "\n"),
+
+                ExpectedToken(kind: .keywordIf,          literal: "IF"),
+                ExpectedToken(kind: .integer(value: 40), literal: "40"),
+                ExpectedToken(kind: .greaterOrEqual,     literal: ">="),
+                ExpectedToken(kind: .integer(value: 40), literal: "40"),
+                ExpectedToken(kind: .keywordThen,        literal: "THEN"),
+                ExpectedToken(kind: .endOfLine,          literal: "\n"),
+
+                ExpectedToken(kind: .keywordIf,          literal: "IF"),
+                ExpectedToken(kind: .integer(value: 50), literal: "50"),
+                ExpectedToken(kind: .lessOrEqual,        literal: "<="),
+                ExpectedToken(kind: .integer(value: 60), literal: "60"),
+                ExpectedToken(kind: .keywordThen,        literal: "THEN"),
+                ExpectedToken(kind: .endOfLine,          literal: "\n"),
+
+                ExpectedToken(kind: .keywordIf,          literal: "IF"),
+                ExpectedToken(kind: .integer(value: 1),  literal: "1"),
+                ExpectedToken(kind: .notEqual,           literal: "><"),
+                ExpectedToken(kind: .integer(value: 2),  literal: "2"),
+                ExpectedToken(kind: .keywordThen,        literal: "THEN"),
+                ExpectedToken(kind: .keywordIf,          literal: "IF"),
+                ExpectedToken(kind: .integer(value: 2),  literal: "2"),
+                ExpectedToken(kind: .notEqual,           literal: "<>"),
+                ExpectedToken(kind: .integer(value: 1),  literal: "1"),
+                ExpectedToken(kind: .keywordThen,        literal: "THEN"),
+                ExpectedToken(kind: .endOfFile,          literal: ""),
+            ]
+        )
+    }
+
     // MARK: Private Methods
 
     /// Assert that the tokens analyzed from the given input match the given expected tokens.
