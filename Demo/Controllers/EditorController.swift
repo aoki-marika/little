@@ -113,7 +113,23 @@ class EditorController: UIViewController {
         // run in a background thread so recursion doesnt freeze the interface
         let interpreter = Interpreter(input: input, output: consoleController)
         DispatchQueue.global(qos: .background).async {
-            #warning("TODO: Display errors with line and column.")
+            /// Show the given error with formatting in the console.
+            /// - Parameter error: The error that occured.
+            /// - Parameter range: The range in the original source of which the error occured.
+            func showError(_ error: Error, inRange range: Range<String.Index>) {
+                // get the distance from the beginning of the line to the column
+                let lineRange = input.lineRange(for: range)
+                let columnDistance = input.distance(from: lineRange.lowerBound, to: range.lowerBound)
+
+                // output the error
+                // format the error with the line, then a carat pointing to the offending range with the error below
+                self.consoleController.receive(string: """
+                \(input[lineRange])
+                \(String(repeating: " ", count: columnDistance))^
+                error: \(error)
+
+                """)
+            }
 
             do {
                 try interpreter.start()
@@ -126,20 +142,13 @@ class EditorController: UIViewController {
                 }
             }
             catch let error as SourceError {
-                // print the error to the console
-                let range = error.range
-                let substring = input[range]
-                self.consoleController.receive(string: "'\(substring)': \(error.wrapped)\n")
+                showError(error.wrapped, inRange: error.range)
             }
             catch let error as RuntimeError {
-                // print the error to the console
-                let range = error.range
-                let substring = input[range]
-                self.consoleController.receive(string: "'\(substring)': \(error.wrapped)\n")
+                showError(error.wrapped, inRange: error.range)
             }
             catch {
-                #warning("TODO: Doesn't catch interpreter errors, need a RuntimeError wrapper type with line ranges.")
-                self.consoleController.receive(string: "program error: \(error)\n")
+                fatalError("unable to interpret program: \(error)")
             }
         }
     }
