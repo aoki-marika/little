@@ -57,6 +57,15 @@ public class Interpreter {
         currentOffset = 0
         lineNumberOffsets = [:]
         variables = [:]
+
+        // read in all the line number offsets
+        for (offset, line) in lines.enumerated() {
+            guard let number = line.number else {
+                continue
+            }
+
+            lineNumberOffsets[number] = offset
+        }
     }
 
     /// Execute the next line in this interpreter.
@@ -70,7 +79,7 @@ public class Interpreter {
         // execute the next line and wrap any errors it produces in a runtime error
         let line = lines[currentOffset]
         do {
-            if try execute(line: line, offset: currentOffset) {
+            if try execute(statement: line.statement) {
                 return true
             }
         }
@@ -89,20 +98,6 @@ public class Interpreter {
     }
 
     // MARK: Private Methods
-
-    /// Execute the given line in this interpreter.
-    /// - Parameter line: The line to execute.
-    /// - Parameter offset: The offset of the given line in this interpreter's lines.
-    /// - Returns: Whether or not the given line terminated the program.
-    private func execute(line: Line, offset: Int) throws -> Bool {
-        // assign the line number if one was given
-        if let number = line.number {
-            lineNumberOffsets[number] = offset
-        }
-
-        // execute the lines statement
-        return try execute(statement: line.statement)
-    }
 
     /// Execute the given statement in this interpreter.
     /// - Returns: Whether or not the given statement terminated the program.
