@@ -137,6 +137,9 @@ class Parser {
             return .print(items: try printlist())
         case .keywordLet:
             return try assignment()
+        case .keywordGoto:
+            try eat(kind: .keywordGoto)
+            return .goto(line: try expression())
         default:
             return try assignment()
         }

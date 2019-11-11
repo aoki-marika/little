@@ -32,6 +32,7 @@ public class Lexer {
         "PRINT": .keywordPrint,
         "PR": .keywordPrint,
         "LET": .keywordLet,
+        "GOTO": .keywordGoto,
     ]
 
     /// The source code for this lexer to analyze.

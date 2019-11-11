@@ -26,7 +26,7 @@ public class Interpreter {
     private var currentOffset = 0
 
     /// The current mapping of line numbers to offsets in this interpreter.
-    private var lineNumbers = [Int : Int]()
+    private var lineNumberOffsets = [Int : Int]()
 
     /// The current values of the variables assigned in this interpreter.
     /// Maps variable name to value.
@@ -55,7 +55,7 @@ public class Interpreter {
     public func start() throws {
         lines = try parser.parse()
         currentOffset = 0
-        lineNumbers = [:]
+        lineNumberOffsets = [:]
         variables = [:]
     }
 
@@ -81,7 +81,7 @@ public class Interpreter {
     private func execute(line: Line, offset: Int) throws {
         // assign the line number if one was given
         if let number = line.number {
-            lineNumbers[number] = offset
+            lineNumberOffsets[number] = offset
         }
 
         // execute the lines statement
@@ -92,6 +92,8 @@ public class Interpreter {
             try executePrint(items: items)
         case .assignment(let variable, let value):
             try executeAssignment(variable: variable, value: value)
+        case .goto(let line):
+            try executeGoto(line: line)
         }
     }
 
@@ -176,5 +178,16 @@ public class Interpreter {
 
     private func executeAssignment(variable: String, value: Expression) throws {
         variables[variable] = try evaluate(expression: value)
+    }
+
+    private func executeGoto(line: Expression) throws {
+        let number = try evaluate(expression: line)
+        guard let offset = lineNumberOffsets[number] else {
+            throw InterpreterError.referencingUnassignedLine(number: number)
+        }
+
+        // need to decrement by one to account for the increment after this statement is executed
+        // if this isnt done then the line that is gotod is not executed, only the lines after it
+        currentOffset = offset - 1
     }
 }

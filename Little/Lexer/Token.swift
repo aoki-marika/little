@@ -67,6 +67,9 @@ extension Token {
         /// The `LET` keyword, being an optional prefix for an assignment statement.
         case keywordLet
 
+        /// The `GOTO` keyword, used for changing the sequence in which the program executes.
+        case keywordGoto
+
         // MARK: Values
 
         /// An integer literal.
@@ -102,7 +105,7 @@ extension Token {
             switch self {
             case .plus, .minus, .asterisk, .slash:
                 return [.operator]
-            case .keywordPrint, .keywordLet:
+            case .keywordPrint, .keywordLet, .keywordGoto:
                 return [.keyword]
             case .integer(_):
                 return [.number]

@@ -25,4 +25,8 @@ enum Statement: Equatable {
     /// - Parameter variable: The name of the variable to assign.
     /// - Parameter value: The expression to evaluate to get the value to assign.
     case assignment(variable: String, value: Expression)
+
+    /// Change the sequence in which the program executes by moving to the line of the given number.
+    /// - Parameter line: The expression to evaluate to get the line number to go to.
+    case goto(line: Expression)
 }
