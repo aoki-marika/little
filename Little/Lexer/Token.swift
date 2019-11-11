@@ -43,6 +43,21 @@ extension Token {
         /// The binary `=` operator.
         case equals
 
+        /// The `<` relational operator, compares if the left operand is less than the right operand.
+        case lessThan
+
+        /// The `>` relational operator, compares if the left operand is greater than the right operand.
+        case greaterThan
+
+        /// The `<=` relational operator, compares if the left operand is less than or equal to the right operand.
+        case lessOrEqual
+
+        /// The `>=` relational operator, compares if the left operand is greater than or equal to the right operand.
+        case greaterOrEqual
+
+        /// The `<>` and `><` relational operators, compares if the left operand and the right operand are not equal.
+        case notEqual
+
         // MARK: Punctuators
 
         /// The left part of the `(...)` punctuator.
@@ -120,7 +135,9 @@ extension Token {
             switch self {
             case .plus, .minus, .asterisk, .slash:
                 return [.operator]
-            case .keywordPrint, .keywordLet, .keywordGoto, .keywordRem, .keywordClear, .keywordEnd:
+            case .equals, .lessThan, .greaterThan, .lessOrEqual, .greaterOrEqual, .notEqual:
+                return [.operator, .relationalOperator]
+            case .keywordPrint, .keywordLet, .keywordGoto, .keywordIf, .keywordThen, .keywordRem, .keywordClear, .keywordEnd:
                 return [.keyword]
             case .integer(_):
                 return [.number]
@@ -149,6 +166,9 @@ extension Token.Kind {
 
         /// A mathematical operator, typically `+`, `-`, `*`, or `/`.
         case `operator`
+
+        /// An operator which compares two operands.
+        case relationalOperator
 
         /// An identifier which has special meaning in the grammar.
         case keyword

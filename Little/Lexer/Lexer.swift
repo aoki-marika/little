@@ -21,6 +21,8 @@ public class Lexer {
         "*": .asterisk,
         "/": .slash,
         "=": .equals,
+        "<": .lessThan,
+        ">": .greaterThan,
         "(": .leftParentheses,
         ")": .rightParentheses,
         ",": .comma,
@@ -29,6 +31,10 @@ public class Lexer {
 
     /// The mapping of double character strings to token kinds when analyzing source code.
     private let doubleCharacterMapping: [String : Token.Kind] = [
+        "<=": .lessOrEqual,
+        ">=": .greaterOrEqual,
+        "<>": .notEqual,
+        "><": .notEqual,
     ]
 
     /// The mapping of multiple character identifiers to keyword token kinds when analyzing source code.
@@ -38,6 +44,8 @@ public class Lexer {
         "PR": .keywordPrint,
         "LET": .keywordLet,
         "GOTO": .keywordGoto,
+        "IF": .keywordIf,
+        "THEN": .keywordThen,
         "REM": .keywordRem,
         "CLEAR": .keywordClear,
         "END": .keywordEnd,
