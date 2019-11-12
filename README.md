@@ -20,8 +20,8 @@ Generally these differences are to simplify and remove unnecessary space saving 
 
 The differences are as follows:
 
-* Line numbers cannot have whitespace between the digits.
-   * For example, `7 8 9` is invalid.
+* Line numbers, `GOTO`, and `GOSUB` cannot have whitespace between the digits/characters.
+   * For example, `7 8 9`, `GO TO`, and `G O S U B` are all invalid.
 * Keywords must have whitespace after themselves.
    * For example, `PRI` would be equivalent to `PRINT I` in Tiny, but in Little this produces an invalid keyword error.
 * The `PRINT` statement uses different separators.
