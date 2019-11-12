@@ -32,6 +32,9 @@ public class Interpreter {
     /// Maps variable name to value.
     private var variables = [String : Int]()
 
+    /// The current subroutine that this interpreter is executing, if any.
+    private var subroutine: Subroutine?
+
     // MARK: Initializers
 
     /// - Parameter parser: The parser for this interpreter to interpret the lines of.
@@ -233,12 +236,23 @@ public class Interpreter {
     }
 
     private func executeGoSub(line: Expression) throws {
-        let number = try evaluate(expression: line)
-        print("GOSUB", number)
+        // store the calling offset and perform the goto
+        let offset = currentOffset
+        try executeGoto(line: line)
+
+        // create the new subroutine and set it as the current
+        subroutine = Subroutine(callingLineOffset: offset, parent: subroutine)
     }
 
-    private func executeReturn() {
-        print("RETURN")
+    private func executeReturn() throws {
+        // ensure there is a current subroutine to return from
+        guard let subroutine = subroutine else {
+            throw InterpreterError.returnOutsideSubroutine
+        }
+
+        // dont need to decrement here as the calling gosub should be skipped on return
+        currentOffset = subroutine.callingLineOffset
+        self.subroutine = subroutine.parent
     }
 
     /// - Returns: Whether or not the given statement terminated the program.

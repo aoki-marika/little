@@ -22,6 +22,7 @@
 		EC20A1C82377162000B86856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC20A1C72377162000B86856 /* Assets.xcassets */; };
 		EC20A1CB2377162000B86856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC20A1C92377162000B86856 /* LaunchScreen.storyboard */; };
 		EC20A1D12377199900B86856 /* SplitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC20A1D02377199900B86856 /* SplitController.swift */; };
+		EC38DFC6237A00B900C99855 /* Subroutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC38DFC5237A00B900C99855 /* Subroutine.swift */; };
 		EC46E21B2378737100A49EE1 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E21A2378737100A49EE1 /* UIFont.swift */; };
 		EC6C2A452377236D0047E6F6 /* Little.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2144C2374516A002D25CA /* Little.framework */; };
 		EC6C2A462377236D0047E6F6 /* Little.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ECA2144C2374516A002D25CA /* Little.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -89,6 +90,7 @@
 		EC20A1CA2377162000B86856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC20A1CC2377162000B86856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC20A1D02377199900B86856 /* SplitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitController.swift; sourceTree = "<group>"; };
+		EC38DFC5237A00B900C99855 /* Subroutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subroutine.swift; sourceTree = "<group>"; };
 		EC46E21A2378737100A49EE1 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		EC72516723773004006F2DB1 /* EditorTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		EC76BB1A23745A8800F1034F /* LexerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexerError.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		EC20A1AD2377045000B86856 /* Interpreter */ = {
 			isa = PBXGroup;
 			children = (
+				EC38DFC5237A00B900C99855 /* Subroutine.swift */,
 				EC20A1B22377102700B86856 /* Output.swift */,
 				EC20A1AE2377045B00B86856 /* Interpreter.swift */,
 				EC20A1B42377122F00B86856 /* InterpreterError.swift */,
@@ -449,6 +452,7 @@
 				ECA2146A23745405002D25CA /* Token.swift in Sources */,
 				EC20A1AA2376F5A100B86856 /* PrintItem.swift in Sources */,
 				EC76BB1D23745A9800F1034F /* SourceError.swift in Sources */,
+				EC38DFC6237A00B900C99855 /* Subroutine.swift in Sources */,
 				EC20A1AC2376FE1200B86856 /* Statement.swift in Sources */,
 				EC20A1B32377102700B86856 /* Output.swift in Sources */,
 			);
