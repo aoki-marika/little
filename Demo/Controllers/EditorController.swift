@@ -123,8 +123,9 @@ class EditorController: UIViewController {
 
                 // output the error
                 // format the error with the line, then a carat pointing to the offending range with the error below
+                // need to trim whitespace from the line as String.lineRange(for:) has a tendency to include the newline character
                 self.consoleController.receive(string: """
-                \(input[lineRange])
+                \(input[lineRange].trimmingCharacters(in: .newlines))
                 \(String(repeating: " ", count: columnDistance))^
                 error: \(error)
 
