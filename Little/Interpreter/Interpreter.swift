@@ -223,7 +223,8 @@ public class Interpreter {
     private func executeGoto(line: Expression) throws {
         let number = try evaluate(expression: line)
         guard let offset = lineNumberOffsets[number] else {
-            throw InterpreterError.referencingUnassignedLine(number: number)
+            let error = InterpreterError.referencingUnassignedLine(number: number)
+            throw RuntimeError(range: line.range, wrapped: error)
         }
 
         // need to decrement by one to account for the increment after this statement is executed
