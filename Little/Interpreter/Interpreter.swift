@@ -189,7 +189,9 @@ public class Interpreter {
             return value
         case .variable(let name):
             guard let value = variables[name] else {
-                throw InterpreterError.readingUnassignedVariable(name: name)
+                // default variables to zero
+                // this seems to be what tiny basic and its programs expect
+                return 0
             }
 
             return value
