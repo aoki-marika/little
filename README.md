@@ -29,3 +29,4 @@ The differences are as follows:
    * For example, `PRINT "A", "B", "C"; "."` produces `A B C.`
 * Some statements are omitted.
    * The `INPUT`, `RUN`, and `LIST` statements are all removed as these only function in a command line environment, which Little BASIC is not intended for.
+   * The `USR` function is removed as the program can not be allowed to call machine language.
