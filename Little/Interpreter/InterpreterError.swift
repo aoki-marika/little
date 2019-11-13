@@ -14,6 +14,10 @@ enum InterpreterError: Error {
     /// The interpreter attempted to perform division with a right operand of zero.
     case divisionByZero
 
+    /// The interpreter attempted to evaluate a random number, but found an invalid range, such as it being less than or equal to zero.
+    /// - Parameter range: The invalid range that was found.
+    case invalidRandomRange(range: Int)
+
     /// The interpreter attempted to reference a line by number that was not assigned yet, such as in a `GOTO`.
     /// - Parameter number: The invalid line number that was referenced.
     case referencingUnassignedLine(number: Int)

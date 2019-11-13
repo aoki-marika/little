@@ -185,6 +185,13 @@ public class Interpreter {
             default:
                 fatalError("invalid binary operator: \(token)")
             }
+        case .random(let rangeNode):
+            let range = try evaluate(node: rangeNode)
+            guard range > 0 else {
+                throw InterpreterError.invalidRandomRange(range: range)
+            }
+
+            return Int.random(in: 0..<range)
         case .integer(let value):
             return value
         case .variable(let name):
