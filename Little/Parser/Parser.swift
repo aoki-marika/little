@@ -372,9 +372,7 @@ class Parser {
             let range = try expression()
             try eat(kind: .rightParentheses)
             return .random(
-                range: .wrappedExpression(
-                    expression: range
-                )
+                range: range.root
             )
         default:
             break

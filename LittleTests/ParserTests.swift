@@ -307,7 +307,7 @@ class ParserTests: XCTestCase {
                     statement: .assignment(
                         variable: "N",
                         value: Expression(root: .random(
-                            range: .wrappedExpression(expression: Expression(root: .integer(value: 50)))
+                            range: .integer(value: 50)
                         ))
                     ),
                     literal: "LET N = RND(50)"
@@ -318,11 +318,11 @@ class ParserTests: XCTestCase {
                     statement: .assignment(
                         variable: "C",
                         value: Expression(root: .random(
-                            range: .wrappedExpression(expression: Expression(root: .binaryOperator(
+                            range: .binaryOperator(
                                 token: .plus,
                                 left: .integer(value: 4),
                                 right: .integer(value: 2)
-                            )))
+                            )
                         ))
                     ),
                     literal: "C = RND(4 + 2)"
