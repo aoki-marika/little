@@ -60,6 +60,10 @@ class HighlightingTextStorage: NSTextStorage {
                 .font: boldFont,
                 .foregroundColor: UIColor(named: "EditorKeyword")!,
             ],
+            .function: [
+                .font: boldFont,
+                .foregroundColor: UIColor(named: "EditorFunction")!,
+            ],
             .number: [
                 .font: regularFont,
                 .foregroundColor: UIColor(named: "EditorNumber")!,
