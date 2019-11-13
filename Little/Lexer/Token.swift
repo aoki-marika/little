@@ -106,6 +106,11 @@ extension Token {
         /// The `END` keyword, used to terminate a program before completion.
         case keywordEnd
 
+        // MARK: Functions
+
+        /// The `RND` function, used to generate a random number from zero to a given upper limit.
+        case functionRnd
+
         // MARK: Values
 
         /// An integer literal.
@@ -151,6 +156,8 @@ extension Token {
                 return [.operator, .relationalOperator]
             case .keywordPrint, .keywordLet, .keywordGoto, .keywordGoSub, .keywordReturn, .keywordIf, .keywordThen, .keywordRem, .keywordClear, .keywordEnd:
                 return [.keyword]
+            case .functionRnd:
+                return [.function]
             case .integer(_):
                 return [.number]
             case .string(_):
@@ -184,6 +191,9 @@ extension Token.Kind {
 
         /// An identifier which has special meaning in the grammar.
         case keyword
+
+        /// A keyword which is referring to a function that can be called to return a value.
+        case function
 
         /// A number literal, either integer or floating point.
         case number

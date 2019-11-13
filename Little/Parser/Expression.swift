@@ -57,6 +57,11 @@ extension Expression {
         /// - Parameter token: The token kind to infer the operation from. Must belong to the binary operations category.
         case binaryOperator(token: Token.Kind, left: Expression.Node, right: Expression.Node)
 
+        /// Generate a random number from zero to the given upper bound.
+        /// - Parameter range: The expression to evaulate to get the upper bound of the range for the random number.
+        /// Numbers can be from zero to `range - 1`, so this value must be greater than zero.
+        case random(range: Expression.Node)
+
         /// An integer literal.
         /// - Parameter value: The integer value of this node.
         case integer(value: Int)

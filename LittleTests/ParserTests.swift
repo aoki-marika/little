@@ -293,6 +293,44 @@ class ParserTests: XCTestCase {
         )
     }
 
+    func testFunctions() {
+        // test different functions
+        assertLines(
+            from: """
+            LET N = RND(50)
+            C = RND(4 + 2)
+            """,
+            equals: [
+                // LET N = RND(50)
+                ExpectedLine(
+                    number: nil,
+                    statement: .assignment(
+                        variable: "N",
+                        value: Expression(root: .random(
+                            range: .wrappedExpression(expression: Expression(root: .integer(value: 50)))
+                        ))
+                    ),
+                    literal: "LET N = RND(50)"
+                ),
+                // C = RND(4 + 2)
+                ExpectedLine(
+                    number: nil,
+                    statement: .assignment(
+                        variable: "C",
+                        value: Expression(root: .random(
+                            range: .wrappedExpression(expression: Expression(root: .binaryOperator(
+                                token: .plus,
+                                left: .integer(value: 4),
+                                right: .integer(value: 2)
+                            )))
+                        ))
+                    ),
+                    literal: "C = RND(4 + 2)"
+                ),
+            ]
+        )
+    }
+
     // MARK: Private Methods
 
     /// Assert that the lines parsed from the given input match the given lines.

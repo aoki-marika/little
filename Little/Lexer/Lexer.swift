@@ -51,6 +51,7 @@ public class Lexer {
         "REM": .keywordRem,
         "CLEAR": .keywordClear,
         "END": .keywordEnd,
+        "RND": .functionRnd,
     ]
 
     /// The source code for this lexer to analyze.

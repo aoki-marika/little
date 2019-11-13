@@ -366,6 +366,16 @@ class Parser {
             return .wrappedExpression(
                 expression: inner
             )
+        case .functionRnd:
+            try eat(kind: .functionRnd)
+            try eat(kind: .leftParentheses)
+            let range = try expression()
+            try eat(kind: .rightParentheses)
+            return .random(
+                range: .wrappedExpression(
+                    expression: range
+                )
+            )
         default:
             break
         }
